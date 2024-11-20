@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Avatar.jpg">
+  <link rel="icon" href="/img/Avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="suuuu">
+  <meta name="keywords" content="blog">
+  
+    <meta name="description" content="环境配置（如果我记得住且不懒的话持续更新）浏览器做web端的渗透测试，我们首先就要有一个好的浏览器，这里我推荐使用Firefox和Google，这里的建议是两个都配一配，一个不行就换另一个，这篇文章我将从google的角度进行配置，firefox大体相通，如果真的不想配很多很繁琐的，我这里也先直接推荐一个配好的版本 渗透测试专用firefox浏览器 v2024.2最新版！！！ (qq.com) 下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="挖洞前置-环境配置">
+<meta property="og:url" content="https://www.susec.xyz/2024/06/17/%E6%8C%96%E6%B4%9E%E5%89%8D%E7%BD%AE-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="suuuu&#39;s blog">
+<meta property="og:description" content="环境配置（如果我记得住且不懒的话持续更新）浏览器做web端的渗透测试，我们首先就要有一个好的浏览器，这里我推荐使用Firefox和Google，这里的建议是两个都配一配，一个不行就换另一个，这篇文章我将从google的角度进行配置，firefox大体相通，如果真的不想配很多很繁琐的，我这里也先直接推荐一个配好的版本 渗透测试专用firefox浏览器 v2024.2最新版！！！ (qq.com) 下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181048442.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181052867.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181048654.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181053190.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049688.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049625.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049082.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049846.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181050051.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181050016.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170252967.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170255605.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170255011.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170256167.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170257756.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170258448.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170258571.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170259978.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170300379.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170302402.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170306053.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181952849.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181952114.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181954426.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181957662.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181958069.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181958362.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181959236.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181959754.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182000375.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182001124.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182002168.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182002785.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182003861.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182004320.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182004024.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181946975.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181946349.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191639528.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191643789.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191648009.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191650484.png">
+<meta property="article:published_time" content="2024-06-16T19:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T15:31:22.558Z">
+<meta property="article:author" content="suuuu">
+<meta property="article:tag" content="挖洞">
+<meta property="article:tag" content="环境配置">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181048442.png">
+  
+  
+  
+  <title>挖洞前置-环境配置 - suuuu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>suuuu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BlackRoses.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="挖洞前置-环境配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-17 03:00" pubdate>
+          2024年6月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">挖洞前置-环境配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="环境配置（如果我记得住且不懒的话持续更新）"><a href="#环境配置（如果我记得住且不懒的话持续更新）" class="headerlink" title="环境配置（如果我记得住且不懒的话持续更新）"></a>环境配置（如果我记得住且不懒的话持续更新）</h1><h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>做web端的渗透测试，我们首先就要有一个好的浏览器，这里我推荐使用Firefox和Google，这里的建议是两个都配一配，一个不行就换另一个，这篇文章我将从google的角度进行配置，firefox大体相通，如果真的不想配很多很繁琐的，我这里也先直接推荐一个配好的版本</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AFwq_sLsMR0GcFABI__isg">渗透测试专用firefox浏览器 v2024.2最新版！！！ (qq.com)</a></p>
+<p>下面正式开始</p>
+<p>首先是一个插件下载网站，如果不懂得科学上网，我们的插件可以从这里下载</p>
+<p><a target="_blank" rel="noopener" href="https://www.crxsoso.com/">https://www.crxsoso.com/</a></p>
+<p>下面这个是google扩展程序官网（<strong>需要魔法！</strong>）</p>
+<p><a target="_blank" rel="noopener" href="https://chromewebstore.google.com/category/extensions?utm_source=ext_sidebar&hl=zh-CN">https://chromewebstore.google.com/category/extensions?utm_source=ext_sidebar&amp;hl=zh-CN</a></p>
+<p>先说说推荐哪些插件：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181048442.png" srcset="/img/loading.gif" lazyload alt="image-20240618104842398"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181052867.png" srcset="/img/loading.gif" lazyload alt="image-20240618105255056"></p>
+<p>这个工具可以让我们很轻易地就能对资产做一些简单的信息收集，我们还能自己给它添加上fofa,hunter等的key</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181048654.png" srcset="/img/loading.gif" lazyload alt="image-20240618104855611"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181053190.png" srcset="/img/loading.gif" lazyload alt="image-20240618105334124"></p>
+<p>这个用于快捷的有没有api接口泄露</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049688.png" srcset="/img/loading.gif" lazyload alt="image-20240618104914665"></p>
+<p>熟知ctf的对这个应该都不会陌生</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049625.png" srcset="/img/loading.gif" lazyload alt="image-20240618104926586"></p>
+<p>这个对于后续抓包非常重要，是用来调代理的</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049082.png" srcset="/img/loading.gif" lazyload alt="image-20240618104935039"></p>
+<p>对端口及一些可能的漏洞进行扫描</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181049846.png" srcset="/img/loading.gif" lazyload alt="image-20240618104945825"></p>
+<p>扫描使用了什么组件</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181050051.png" srcset="/img/loading.gif" lazyload alt="image-20240618105001015"></p>
+<p>功能较多</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181050016.png" srcset="/img/loading.gif" lazyload alt="image-20240618105012977"></p>
+<p>微步的威胁检测</p>
+<h2 id="Burp-Suite"><a href="#Burp-Suite" class="headerlink" title="Burp Suite"></a>Burp Suite</h2><p>在软件安装之前记得要先配置jdk环境</p>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/technologies/downloads/">Java Downloads | Oracle 中国</a></p>
+<p>这里不展开讲了哈</p>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><p><a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1544866-1-1.html">BurpSuite v2024.5.1汉化无cmd框版（2024.06.09更新） - 『逆向资源区』 - 吾爱破解 - LCG - LSG |安卓破解|病毒分析|www.52pojie.cn</a></p>
+<p>打开网址下载最新版本即可</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170252967.png" srcset="/img/loading.gif" lazyload alt="image-20240617025156894"></p>
+<p>解压到文件夹可以看到这些，如果之前安装过burp的可以先点击一下清楚许可证和数据,点开文件夹中的Start.VBS</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170255605.png" srcset="/img/loading.gif" lazyload alt="image-20240617025528568"></p>
+<p>全部勾选之后点击run就会自动运行</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170255011.png" srcset="/img/loading.gif" lazyload alt="image-20240617025555988"></p>
+<p>输入上一张图中的license</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170256167.png" srcset="/img/loading.gif" lazyload alt="image-20240617025656097"></p>
+<p>然后点击继续</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170257756.png" srcset="/img/loading.gif" lazyload alt="image-20240617025731727"></p>
+<p>选择手动激活</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170258448.png" srcset="/img/loading.gif" lazyload alt="image-20240617025811392"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170258571.png" srcset="/img/loading.gif" lazyload alt="image-20240617025847507"></p>
+<p>然后点击继续即可</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170259978.png" srcset="/img/loading.gif" lazyload alt="image-20240617025907953"></p>
+<p>到此软件安装完成</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170300379.png" srcset="/img/loading.gif" lazyload alt="image-20240617030051344"></p>
+<p>一般来说我们到这里选择临时文件继续即可</p>
+<h3 id="默认设置"><a href="#默认设置" class="headerlink" title="默认设置"></a>默认设置</h3><p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170302402.png" srcset="/img/loading.gif" lazyload alt="image-20240617030207320"></p>
+<p>打开软件长这样，我们基本上最常用的就是代理(proxy),Intruder(网上翻译叫侵入者),重放器(Repeater)，这里我们先着重看看代理，burp作为一款抓取数据包的工具，调好代理尤其重要</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406170306053.png" srcset="/img/loading.gif" lazyload alt="image-20240617030629013"></p>
+<p>刚打开软件它就是空的，什么都没有，这是因为我们还没有打开浏览器（或者我们的网页没有走burp抓取的端口），这里我们要做两件事</p>
+<h4 id="1-配置代理"><a href="#1-配置代理" class="headerlink" title="1:配置代理"></a>1:配置代理</h4><h4 id="2-下载证书"><a href="#2-下载证书" class="headerlink" title="2:下载证书"></a>2:下载证书</h4><p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181952849.png" srcset="/img/loading.gif" lazyload alt="image-20240618195216820"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181952114.png" srcset="/img/loading.gif" lazyload alt="image-20240618195257084"></p>
+<p>如果不喜欢8080可以点上面那个添加换上自己喜欢的端口，但那个不是本次重点，我们要导出证书</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181954426.png" srcset="/img/loading.gif" lazyload alt="image-20240618195440393"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181957662.png" srcset="/img/loading.gif" lazyload alt="image-20240618195712592"></p>
+<p>先随便找个地方存着，名字叫什么无所谓，但一定要有der的后缀</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181958069.png" srcset="/img/loading.gif" lazyload alt="image-20240618195808029"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181958362.png" srcset="/img/loading.gif" lazyload alt="image-20240618195843322"></p>
+<p>然后就是打开浏览器</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181959236.png" srcset="/img/loading.gif" lazyload alt="image-20240618195930184"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181959754.png" srcset="/img/loading.gif" lazyload alt="image-20240618195955694"></p>
+<p>直接搜索证书，可以看到安全那里弹窗了，点进去</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182000375.png" srcset="/img/loading.gif" lazyload alt="image-20240618200035257"></p>
+<p>往下滑可以看到管理证书，点进去</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182001124.png" srcset="/img/loading.gif" lazyload alt="image-20240618200143062"></p>
+<p>点击导入</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182002168.png" srcset="/img/loading.gif" lazyload alt="image-20240618200228099"></p>
+<p>下一步</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182002785.png" srcset="/img/loading.gif" lazyload alt="image-20240618200245723"></p>
+<p>浏览</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182003861.png" srcset="/img/loading.gif" lazyload alt="image-20240618200327788"></p>
+<p>先点击右下角，然后就能看到我们的证书</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182004320.png" srcset="/img/loading.gif" lazyload alt="image-20240618200403543"></p>
+<p>选自动选择然后下一步即可</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406182004024.png" srcset="/img/loading.gif" lazyload alt="image-20240618200436985"></p>
+<h4 id="3-其它配置"><a href="#3-其它配置" class="headerlink" title="3.其它配置"></a>3.其它配置</h4><p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181946975.png" srcset="/img/loading.gif" lazyload alt="image-20240618194608816"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406181946349.png" srcset="/img/loading.gif" lazyload alt="image-20240618194623318"></p>
+<p>这里建议一定要把字体改一下，这里我建议改这个哈（不然的话很容易光标错位，用起来很难受）</p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h5 id="Jython环境安装"><a href="#Jython环境安装" class="headerlink" title="Jython环境安装"></a>Jython环境安装</h5><p>在bp中我们有些插件是由python编写的，但是由于bp是基础java开发，所以我们在装python插件前，需要先装上jython环境</p>
+<p><a target="_blank" rel="noopener" href="https://www.jython.org/download.html">Downloads | Jython</a></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191639528.png" srcset="/img/loading.gif" lazyload alt="image-20240619163905348"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191643789.png" srcset="/img/loading.gif" lazyload alt="image-20240619164324768"></p>
+<p>下完长这样，我们不用点他，打开我们的bp</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191648009.png" srcset="/img/loading.gif" lazyload alt="image-20240619164845942"></p>
+<p>点击选择文件选到我们下载好的jar包</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406191650484.png" srcset="/img/loading.gif" lazyload alt="image-20240619165011454"></p>
+<p>到这里为止基础环境大体完成，由于插件很多，我不一一演示怎么安装，这里就推荐几个插件，以及我认为可能会存在问题的地方</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/smxiazi/xia_Yue">smxiazi&#x2F;xia_Yue: burp 插件 xia_Yue（瞎越） 主要用于测试越权、未授权 (github.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified">f0ng&#x2F;captcha-killer-modified: captcha-killer的修改版，支持关键词识别base64编码的图片，添加免费ocr库，用于验证码爆破，适配新版Burpsuite (github.com)</a></p>
+<p>爆破验证码还要配合打开</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified/blob/main/codereg.py">captcha-killer-modified&#x2F;codereg.py at main · f0ng&#x2F;captcha-killer-modified (github.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/smxiazi/xia_Liao/releases">Releases · smxiazi&#x2F;xia_Liao (github.com)</a></p>
+<p>伪造身份</p>
+<h2 id="Fiddler"><a href="#Fiddler" class="headerlink" title="Fiddler"></a>Fiddler</h2><h2 id="Yakit"><a href="#Yakit" class="headerlink" title="Yakit"></a>Yakit</h2><p><a target="_blank" rel="noopener" href="https://www.yaklang.io/products/intro/">Yakit: 集成化单兵安全能力平台 | Yak Program Language (yaklang.io)</a></p>
+<h2 id="proxifire"><a href="#proxifire" class="headerlink" title="proxifire"></a>proxifire</h2><p><a target="_blank" rel="noopener" href="https://blog.zgsec.cn/archives/278.html">渗透必备：使用Proxifier玩转代理 - AabyssZG’s Blog (zgsec.cn)</a></p>
+<p>直接看这个</p>
+<h2 id="Utools"><a href="#Utools" class="headerlink" title="Utools"></a>Utools</h2><p><a target="_blank" rel="noopener" href="https://u.tools/">uTools官网 - 新一代效率工具平台</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8C%96%E6%B4%9E/" class="category-chain-item">挖洞</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8C%96%E6%B4%9E/" class="print-no-link">#挖洞</a>
+      
+        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="print-no-link">#环境配置</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>挖洞前置-环境配置</div>
+      <div>https://www.susec.xyz/2024/06/17/挖洞前置-环境配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>suuuu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/17/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E5%9C%A8try-hack-me%E6%89%93%E9%9D%B6%EF%BC%8C%E5%8A%B1%E5%BF%97%E6%88%90%E4%B8%BA%E8%B5%9B%E5%8D%9A%E9%AB%98%E6%89%8B-DAY3-Basic-Pentesting/" title="重生之我在try hack me打靶，励志成为赛博高手-DAY3-Basic Pentesting">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">重生之我在try hack me打靶，励志成为赛博高手-DAY3-Basic Pentesting</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94web-1/" title="知攻善防-应急响应-web-1">
+                        <span class="hidden-mobile">知攻善防-应急响应-web-1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Avatar.jpg">
+  <link rel="icon" href="/img/Avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="suuuu">
+  <meta name="keywords" content="blog">
+  
+    <meta name="description" content="JavaWEB指由Java语言开发出来可以在万维网上访问浏览的程序 WEB包括：WEB服务端和WEB客户端 Servlet是什么运行在Web服务器或应用服务器上的程序，作为来自Web浏览器或其它HTTP客户端的请求 生命周期从创建到毁灭 1.init():初始化，只调用一次 2.service() 3.doGet(),doPost() 4.destroy() 创建项目【Servlet】Servle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWEB入门">
+<meta property="og:url" content="https://www.susec.xyz/2024/06/16/JavaWeb/index.html">
+<meta property="og:site_name" content="suuuu&#39;s blog">
+<meta property="og:description" content="JavaWEB指由Java语言开发出来可以在万维网上访问浏览的程序 WEB包括：WEB服务端和WEB客户端 Servlet是什么运行在Web服务器或应用服务器上的程序，作为来自Web浏览器或其它HTTP客户端的请求 生命周期从创建到毁灭 1.init():初始化，只调用一次 2.service() 3.doGet(),doPost() 4.destroy() 创建项目【Servlet】Servle">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151556180.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151556069.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557129.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557788.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557891.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557943.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557075.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605400.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605107.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605205.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605354.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605190.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605560.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605650.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607619.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607891.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607072.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607579.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607315.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607066.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607050.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608710.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608798.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608182.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608595.jpg">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611117.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611136.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611122.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611131.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611148.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611152.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611344.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611365.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611387.png">
+<meta property="article:published_time" content="2024-06-16T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-22T02:34:04.616Z">
+<meta property="article:author" content="suuuu">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151556180.jpg">
+  
+  
+  
+  <title>JavaWEB入门 - suuuu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>suuuu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BlackRoses.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaWEB入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-16 12:00" pubdate>
+          2024年6月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JavaWEB入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JavaWEB"><a href="#JavaWEB" class="headerlink" title="JavaWEB"></a>JavaWEB</h1><p>指由Java语言开发出来可以在万维网上访问浏览的程序</p>
+<p>WEB包括：WEB服务端和WEB客户端</p>
+<h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>运行在Web服务器或应用服务器上的程序，作为来自Web浏览器或其它HTTP客户端的请求</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>从创建到毁灭</p>
+<p>1.init():初始化，只调用一次</p>
+<p>2.service()</p>
+<p><strong>3.doGet(),doPost()</strong></p>
+<p>4.destroy()</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_51367845/article/details/124325311?ops_request_misc=%7B%22request_id%22:%22171290579216800182783781%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=171290579216800182783781&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-2-124325311-null-null.142%5Ev100%5Epc_search_result_base4&utm_term=servlet&spm=1018.2226.3001.4187">【Servlet】Servlet 详解（使用+原理）-CSDN博客</a></p>
+<p>建议看这个</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/Hui4401/</span>StudentManager<br>https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/czwbig/</span>Tmall_JavaEE<br></code></pre></td></tr></table></figure>
+
+<p>然后可以拿这两个分析下</p>
+<h2 id="过滤器、监听器和拦截器"><a href="#过滤器、监听器和拦截器" class="headerlink" title="过滤器、监听器和拦截器"></a>过滤器、监听器和拦截器</h2><p>**过滤器(Filter)**：用于过滤字符编码，做一些统一的业务等等。</p>
+<p>通过<strong>javax.servlet.Filter</strong>接口进行实现</p>
+<p>通常用于防止XSS,SQL注入，任意文件上传等</p>
+<p>**监听器(Listener)**：做一些初始化的内容</p>
+<p>使用<strong>javax.servlet.ServletContextListener</strong>接口实现</p>
+<p>如果同时有监听器和过滤器，监听器在过滤器之前启动</p>
+<p>**拦截器(Interceptor)**：依赖WEB框架</p>
+<p>过滤器和拦截器的区别，分为以下五种：</p>
+<ul>
+<li>拦截器是基于 Java 的反射机制的，而过滤器是基于函数回调</li>
+<li>过滤器依赖与 servlet 容器，而拦截器不依赖与 servlet 容器</li>
+<li>拦截器只能对 action 请求起作用，而过滤器则可以对几乎所有的请求起作用</li>
+<li>拦截器可以访问 action 上下文、值栈里的对象，而过滤器不能</li>
+<li>在 action 的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次</li>
+</ul>
+<h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><p>Java Server Page</p>
+<p>一种动态网页技术</p>
+<p>它使用JSP标签在HTML网页中插入java代码</p>
+<p>标签通常以&lt;% code %&gt;显示</p>
+<p>JSP本质是简化版的servlet</p>
+<p>JVM只能识别Java的类，无法识别JSP代码</p>
+<p>JSP常用于动态页面显示，Servlet常用于逻辑控制。</p>
+<p>JSP做前端动态页面，在接收到用户输入后交给对应Servlet进行处理（JSP也可以当作后端代码进行逻辑控制）</p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>后缀名：.jsp</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;%</span><br><span class="hljs-section">out.println(<span class="hljs-string">&quot;jsp&quot;</span>)</span><br><span class="hljs-section">%&gt;</span><br><br><span class="hljs-section">&lt;jsp:scriptlet&gt;</span><br><span class="hljs-attribute">code</span><br><span class="hljs-section">&lt;/jsp:scriptlet&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>生命周期:<strong>编译</strong>-&gt;初始化-&gt;执行-&gt;销毁</p>
+<p>编译：JSP-&gt;servlet</p>
+<p>三步:解析JSP文件-&gt;将JSP文件转为Servlet-&gt;编译Servlet</p>
+<p>JSP指令:设置JSP整个页面属性的。格式为:&lt;%@ directive attribute&#x3D;”value” %&gt;。</p>
+<p>常见指令:</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;%@ page…%&gt;</td>
+<td>定义网页依赖属性</td>
+</tr>
+<tr>
+<td>&lt;%@ include %&gt;</td>
+<td>包含其他文件</td>
+</tr>
+<tr>
+<td>&lt;%@ taglib %&gt;</td>
+<td>引入标签库定义</td>
+</tr>
+</tbody></table>
+<p>内置对象</p>
+<p>（隐式对象），这九个对象，可以不用声明直接使用。</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>out</td>
+<td>javax.Servlet.jsp.JspWriter</td>
+<td>页面输出</td>
+</tr>
+<tr>
+<td>request</td>
+<td>javax.Servlet.http.HttpServletRequest</td>
+<td>获得用户请求</td>
+</tr>
+<tr>
+<td>response</td>
+<td>javax.Servlet.http.HttpServletResponse</td>
+<td>服务器向客户端的回应信息</td>
+</tr>
+<tr>
+<td>config</td>
+<td>javax.Servlet.ServletConfig</td>
+<td>服务器配置，可以取得初始化参数</td>
+</tr>
+<tr>
+<td>session</td>
+<td>javax.Servlet.http.HttpSession</td>
+<td>保存用户的信息</td>
+</tr>
+<tr>
+<td>application</td>
+<td>javax.Servlet.ServletContext</td>
+<td>所有用户的共享信息</td>
+</tr>
+<tr>
+<td>page</td>
+<td>java.lang.Object</td>
+<td>指当前页面转换后的Servlet类的实例</td>
+</tr>
+<tr>
+<td>pageContext</td>
+<td>javax.Servlet.jsp.PageContext</td>
+<td>JSP的页面容器</td>
+</tr>
+<tr>
+<td>exception</td>
+<td>java.lang.Throwable</td>
+<td>表示JSP页面所发生的异常，在错误页中才起作用</td>
+</tr>
+</tbody></table>
+<h2 id="创建项目-1"><a href="#创建项目-1" class="headerlink" title="创建项目"></a>创建项目</h2><h2 id="JSP木马"><a href="#JSP木马" class="headerlink" title="JSP木马"></a>JSP木马</h2><p>前几年是 JSP 木马的鼎盛时期，由于技术的迭代。现在大型企业使用 SprinBoot 框架来开发的系统了，该框架默认是不引入 JSP 解析的，需要引入特定依赖才可以。</p>
+<p>而且现在前端大多使用vue，thymeleaf，freemarker等等。因此JSP木马也算逐渐没落了。</p>
+<p>但我们还是得学习了解，毕竟网站数量基数很大，难免会在授权的测试中遇见。</p>
+<p>JSP木马也可以称作JSP Webshell，如果对方在上传文件或其他功能没有做防护的话，攻击者可以利用任意文件上传漏洞将恶意代码传到后端，继而攻击者可以达到操作目标网站的目的。</p>
+<p>切勿对未授权的系统进行非法测试，这是违法行为。</p>
+<p>推荐一些较为老派的 JSP 木马的 github 仓库：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/theralfbrown/</span>WebShell-<span class="hljs-number">2</span><span class="hljs-regexp">/tree/m</span>aster/jsp<br></code></pre></td></tr></table></figure>
+
+<p>近两年主流 webshell 管理工具：冰蝎，哥斯拉，蚁剑……</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">冰蝎：https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/rebeyond/</span>Behinder<br>蚁剑：https:<span class="hljs-regexp">//gi</span>thub.com/AntSwordProject<br>哥斯拉：https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/BeichenDream/</span>Godzilla<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="1、JSP-大马"><a href="#1、JSP-大马" class="headerlink" title="1、JSP 大马"></a>1、JSP 大马</h3><p>JSP 大马，在代码中写入了更多功能，可以实现在网页中进行一些危险操作。</p>
+<p>以下演示案例中的JSP大马用的是<code>https://github.com/theralfbrown/WebShell-2/tree/master/jsp</code>这个仓库中<code>无密码的jsp大马.jsp</code>。</p>
+<p>①、在webapp下新建个<code>shell.jsp</code>，在该文件中复制粘贴以上代码。如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151556180.jpg" srcset="/img/loading.gif" lazyload alt="JSP大马"></p>
+<p>②、点击运行，；浏览器访问<code>127.0.0.1:8080/shell.jsp</code>，从中可以看到，我们可以进行的危险操作有上传文件、执行命令等等，如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151556069.jpg" srcset="/img/loading.gif" lazyload alt="大马执行ping命令"></p>
+<p>建议各位动手操作吧，动手操作加深理解。</p>
+<p>感兴趣的可以自己私下阅读学习源码。</p>
+<h3 id="2、Godzilla（哥斯拉）JSP木马操作"><a href="#2、Godzilla（哥斯拉）JSP木马操作" class="headerlink" title="2、Godzilla（哥斯拉）JSP木马操作"></a>2、Godzilla（哥斯拉）JSP木马操作</h3><p>Godzilla（哥斯拉），主要用于管理Webshell的客户端工具。近两年比较主流的工具。哥斯拉内置了 3 种 Payload 以及 6 种加密器,6 种支持脚本后缀，20 个内置插件。</p>
+<p>Github地址：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/BeichenDream/</span>Godzilla<br></code></pre></td></tr></table></figure>
+
+<p>下载地址：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/BeichenDream/</span>Godzilla<span class="hljs-regexp">/releases/</span>tag/v4.<span class="hljs-number">0.1</span>-godzilla<br></code></pre></td></tr></table></figure>
+
+<p>下面我们在代码文件中再新建一个名为<code>shell1.jsp</code>文件，配合哥斯拉的JSP木马进行操作。</p>
+<p>①、下载完成后，启动哥斯拉，点击左上角管理，选择生成，此步骤是为了生成JSP木马代码，如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557129.jpg" srcset="/img/loading.gif" lazyload alt="哥斯拉生成木马"></p>
+<p>然后点击生成，suffix 选择为 JSP，点击确定后选择存放目录。</p>
+<p>②、将已生成的代码复制粘贴到<code>shell1.jsp</code>中，然后启动项目。如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557788.jpg" srcset="/img/loading.gif" lazyload alt="复制粘贴到shell1jsp中"></p>
+<p>③、打开哥斯拉，点击左上角目标，选择添加，将shell1.jsp地址添加进去后点击添加，如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557891.jpg" srcset="/img/loading.gif" lazyload alt="添加目标"></p>
+<p>④、点击添加后，在管理页面即可看到该链接，右键选择进入，成功进入webshell管理页面，剩下的自己研究下吧。</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557943.jpg" srcset="/img/loading.gif" lazyload alt="shell执行whoami"></p>
+<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><p><a target="_blank" rel="noopener" href="https://spring.io/">Spring | Home</a></p>
+<p>开源框架，用于构建企业级java应用程序</p>
+<p>核心特点：</p>
+<p><strong>轻量级</strong></p>
+<p><strong>控制反转</strong></p>
+<p><strong>面向切面编程</strong></p>
+<p><strong>容器</strong></p>
+<p><strong>数据访问</strong></p>
+<p><strong>事务管理</strong></p>
+<p><strong>模块化</strong></p>
+<p>Spring是一个java开源框架接口，是一个生态体系</p>
+<p>核心框架为Spring Framework</p>
+<p>在这基础上衍生出Spring Boot、Spring Cloud、Spring Data、Spring Security等</p>
+<h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h2><p>Spring基础上的一个MVC框架，基于模型-视图-控制器（model-view-controller)设计模式进行javaweb系统的开发，它是Spring的一个模块，通过Dispatcher Servlet,ModelAndView和View Resolver等</p>
+<p>想用SpringMVC必须先依赖Spring</p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC是一种软件框架模式，被广泛应用再JavaEE项目开发中、MVC模式通过提供一种良好的组织结构和分工方式，帮助解决了软件开发中的耦合、可维护性、可测试性和可扩展性等方面的问题。</p>
+<p>MVC</p>
+<p>M</p>
+<p>模型是用于处理数据逻辑的部分</p>
+<p>所谓数据逻辑，也就是数据的映射以及对数据的增删改查，Bean、DAO(数据访问对象)等都属于模型部分</p>
+<p>V</p>
+<p>视图负责数据与其它信息的显示，也就是给用户看到的页面</p>
+<p>html、JSP等页面都可以作为视图‘</p>
+<p>C</p>
+<p>控制器是模型与视图之间的桥梁，控制着数据与用户的交互。</p>
+<p>控制器通常负责从视图读取数据，处理用户输入，并向模型发送数据，也可以从模型中读取数据，再发送给视图，由视图显示</p>
+<h2 id="核心架构流程"><a href="#核心架构流程" class="headerlink" title="核心架构流程"></a>核心架构流程</h2><p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151557075.png" srcset="/img/loading.gif" lazyload alt="spring-springframework-mvc-5"></p>
+<p>在 Spring MVC 框架中，<code>DispatcherServlet</code>、<code>HandlerMapping</code> 和 <code>HandlerAdapter</code> 是三个重要的组件，它们各自承担不同的角色，协同工作以处理客户端的请求并调度相应的处理程序。以下是它们的解释和作用：</p>
+<p><strong>DispatcherServlet（调度器Servlet）：</strong></p>
+<ul>
+<li><strong>作用：</strong> <code>DispatcherServlet</code> 是 Spring MVC 中的前端控制器（Front Controller），负责接收客户端的所有请求并将其分派给适当的处理程序（Controller）。</li>
+<li><strong>解释：</strong> 当客户端发送请求时，<code>DispatcherServlet</code> 接收请求，然后根据配置和规则找到合适的 <code>HandlerMapping</code> 来确定请求对应的处理程序。一旦找到处理程序，<code>DispatcherServlet</code> 将请求交给该处理程序进行处理。它还负责处理异常、视图解析和其他与请求生命周期相关的任务。</li>
+<li><strong>源代码路径：</strong></li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/spring-projects/</span>spring-framework<span class="hljs-regexp">/blob/m</span>ain<span class="hljs-regexp">/spring-webmvc/</span>src<span class="hljs-regexp">/main/</span>java<span class="hljs-regexp">/org/</span>springframework<span class="hljs-regexp">/web/</span>servlet/DispatcherServlet.java<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>HandlerMapping（处理程序映射）：</strong></p>
+<ul>
+<li><strong>作用：</strong> <code>HandlerMapping</code> 负责将请求映射到相应的处理程序（Controller）。它确定了客户端请求应该由哪个处理程序来处理。</li>
+<li><strong>解释：</strong> 在 Spring MVC 中，可以有多个 <code>HandlerMapping</code> 实现，包括基于注解的映射、基于路径的映射等。<code>HandlerMapping</code> 将请求的 URL 映射到具体的控制器类和方法，以便 <code>DispatcherServlet</code> 可以将请求分发给正确的处理程序。</li>
+<li><strong>源代码路径：</strong></li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/spring-projects/</span>spring-framework<span class="hljs-regexp">/blob/m</span>ain<span class="hljs-regexp">/spring-webmvc/</span>src<span class="hljs-regexp">/main/</span>java<span class="hljs-regexp">/org/</span>springframework<span class="hljs-regexp">/web/</span>servlet/HandlerMapping.java<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>HandlerAdapter（处理程序适配器）：</strong></p>
+<ul>
+<li><strong>作用：</strong> <code>HandlerAdapter</code> 负责调用实际的处理程序（Controller）来处理请求，并将处理程序的执行结果返回给 <code>DispatcherServlet</code>。</li>
+<li><strong>解释：</strong> 不同的处理程序可能有不同的接口，<code>HandlerAdapter</code> 的作用是适配各种不同类型的处理程序，使得它们能够被 <code>DispatcherServlet</code> 统一调用。它将请求传递给处理程序，处理程序执行后，<code>HandlerAdapter</code> 还负责处理返回的结果，如视图解析、数据绑定等。</li>
+<li><strong>源代码路径：</strong></li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/spring-projects/</span>spring-framework<span class="hljs-regexp">/blob/m</span>ain<span class="hljs-regexp">/spring-webmvc/</span>src<span class="hljs-regexp">/main/</span>java<span class="hljs-regexp">/org/</span>springframework<span class="hljs-regexp">/web/</span>servlet/HandlerAdapter.java<br></code></pre></td></tr></table></figure>
+
+
+
+<p>这三个组件共同协作，实现了请求的分发和处理。<code>DispatcherServlet</code> 充当总管，<code>HandlerMapping</code> 负责找到处理程序，而 <code>HandlerAdapter</code> 则负责调用实际的处理程序执行业务逻辑。这种设计使得 Spring MVC 具有灵活性，允许通过配置来适应不同的业务需求和处理程序类型。</p>
+<blockquote>
+<p>以上部分内容引用自下方链接，推荐大家拓展阅读</p>
+<p><a target="_blank" rel="noopener" href="https://pdai.tech/md/spring/spring-x-framework-springmvc.html">https://pdai.tech/md/spring/spring-x-framework-springmvc.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://pdai.tech/files/kaitao-springMVC.pdf">https://pdai.tech/files/kaitao-springMVC.pdf</a></p>
+</blockquote>
+<h2 id="简单案例"><a href="#简单案例" class="headerlink" title="简单案例"></a>简单案例</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>tee.com<span class="hljs-regexp">/huang_xiao_feng/</span>carrentalsystem<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605400.png" srcset="/img/loading.gif" lazyload alt="image-20240416132652861"></p>
+<p>首先注意，我们打开文件的时候要选择包含<strong>pom.xml</strong>的文件夹</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605107.png" srcset="/img/loading.gif" lazyload alt="image-20240416133600921"></p>
+<p>然后maven配置称自己电脑上的</p>
+<p>导入之后我们看看pom.xml中是否有报错，如果有报红的，那就说明依赖还没有引入进来</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605205.png" srcset="/img/loading.gif" lazyload alt="image-20240416133120230"></p>
+<p>然后就是看src文件中的文件，如果还是有.java后缀的就说明项目还没有被编译成功（如图所示就是编译成功的class文件）</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605354.png" srcset="/img/loading.gif" lazyload alt="image-20240416133855560"></p>
+<p>然后我们在pom.xml中有一些报黄的，鼠标放上去就能自动显示这个版本的依赖有哪些漏洞</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605190.png" srcset="/img/loading.gif" lazyload alt="image-20240416134040791"></p>
+<p>在web.xml中我们可以看到请求路径的映射关系</p>
+<p>我们那一段来进行简单分析</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605560.png" srcset="/img/loading.gif" lazyload alt="image-20240416134509581"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:applicationContext.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这里首先是可以看到</p>
+<servlet>
+
+<p>说明这是一个servlet</p>
+<p>然后名称是</p>
+<p>​    <servlet-name>springMvc</servlet-name></p>
+<p>springMvc</p>
+<p>然后对应的class是</p>
+<p>org.springframework.web.servlet.DispatcherServlet</p>
+<p>就是说请求的路径都可以交给这个DispatcherServlet处理</p>
+<p>前面说到这个的作用就是分发、请求</p>
+<p>然后一般是按照web.xml的配置顺序来执行的，但我们可以看到</p>
+<p><load-on-startup>1</load-on-startup></p>
+<p>这就让它可以在第一个执行</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151605650.png" srcset="/img/loading.gif" lazyload alt="image-20240416140617266"></p>
+<p>然后再看这个springmvc.xml,是对springmvc的配置</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607619.png" srcset="/img/loading.gif" lazyload alt="image-20240416141032992"></p>
+<p>这个是数据库配置</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607891.png" srcset="/img/loading.gif" lazyload alt="image-20240416141152651"></p>
+<p>这个写具体代码</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607072.png" srcset="/img/loading.gif" lazyload alt="image-20240416141127852"></p>
+<p>这个放一些静态文件</p>
+<h1 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h1><p>SpringBoot是一款基于JAVA的开源框架。目的是为了简化Spring应用搭建和开发流程。</p>
+<p>SpingBoot核心原理是自动装配</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>spring.io<span class="hljs-regexp">/projects/</span>spring-boot<br></code></pre></td></tr></table></figure>
+
+<p> 创建项目</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607579.png" srcset="/img/loading.gif" lazyload alt="image-20240416155307497"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607315.png" srcset="/img/loading.gif" lazyload alt="image-20240416155335903"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607066.png" srcset="/img/loading.gif" lazyload alt="image-20240416232904840"></p>
+<p>点击运行</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151607050.png" srcset="/img/loading.gif" lazyload alt="image-20240416232920444"></p>
+<p>就可以打开</p>
+<p>接下来进行简单分析</p>
+<p><code>@SpringBootApplication</code>注解表示这个类为 SpringBoot 的主配置类，SpringBoot 项目应运行这个类下面的 main 方法来启动 SpringBoot 应用。</p>
+<p>也就是说这个 XXXApplication 是该项目的入口。</p>
+<p>④、我们使用的是阿里云的脚手架创建的 SpringBoot 项目，可以看到在com\example\demo 目录下有个 demos\web 目录，里面是一些示例代码。如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608710.jpg" srcset="/img/loading.gif" lazyload alt="helloworld代码"></p>
+<p>⑦、点击右上方运行，或者进入 XXXApplication 中，点击左侧绿色小按钮，即刻运行项目，打开浏览器输入<code>http://127.0.0.1:8080/hello</code>，即可看到返回了一些内容，如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608798.jpg" srcset="/img/loading.gif" lazyload alt="返回helloworld"></p>
+<p>⑧、下面我们进入 demos.web 目录下，看看他的 Controller 代码，也就是返回上面内容的接口代码，是位于该目录下的 BasicController，拿上述接口距离，访问 hello 会返回你输入的名字，默认值是 unkonown user，如下图所示：</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608182.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><strong>其他一些注解含义：</strong></p>
+<p><code>@Controller</code>注解：标注该类为controller类，可以处理 http 请求。@Controller 一般要配合模版来使用。现在项目大多是前后端分离，后端处理请求，然后返回JSON格式数据即可，这样也就不需要模板了。</p>
+<p><code>@ResponseBody</code>注解：将该注解写在类的外面，表示这个类所有方法的返回的数据直接给浏览器。<code> @RestController 相当于 @ResponseBody 加上 @Controller</code></p>
+<p><code>@RequestMapping</code>注解：配置<code>URL映射</code>，可以作用于某个Controller类上，也可以作用于某Controller类下的具体方法中，说白了就是URL中请求路径会直接映射到具体方法中执行代码逻辑。</p>
+<p><code>@PathVariable</code>注解：接受请求URL路径中占位符的值，示例代码如下图所示：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Controller</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/hello&quot;</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;<br>    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/whoami/&#123;name&#125;/&#123;sex&#125;&quot;</span>)<br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span>  <span class="hljs-title function_">hello</span>(<span class="hljs-params"><span class="hljs-meta">@PathVariable</span>(<span class="hljs-string">&quot;name&quot;</span>) <span class="hljs-built_in">String</span> name, <span class="hljs-meta">@PathVariable</span>(<span class="hljs-string">&quot;sex&quot;</span>) <span class="hljs-built_in">String</span> sex</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span> + name + sex;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>@RequestParam</code>注解：将请求参数绑定到你控制器的方法参数上（是springmvc中接收普通参数的注解），常用于POST请求处理表单。</p>
+<p>综上演示，可以看到 Spring Boot 部署非常方便，并且在开发后端服务时也极大简化了各种配置，可以更专注于编写代码。这对于我们审计 Spring Boot 架构的系统也极为的便利。</p>
+<h1 id="Spring-Cloud"><a href="#Spring-Cloud" class="headerlink" title="Spring Cloud"></a>Spring Cloud</h1><p>Spring Cloud 是一系列框架的有序集合。是一套基于 Spring Framework 的分布式系统开发工具，用于构建分布式应用程序中的各种模块化组件。</p>
+<p>它利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用 Spring Boot 的开发风格做到一键启动和部署。</p>
+<p>Spring Cloud 的诞生并不是为了解决微服务中的某一个问题，而是提供了一套解决微服务架构实施的综合性解决方案。</p>
+<p>Spring Cloud 并没有重复制造轮子，它只是将各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过 Spring Boot 风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+<p>大家也听过微服务吧。那它和 Spring Cloud 什么关系呢？</p>
+<p>首先，什么是微服务？</p>
+<p>微服务（英语：Microservices）是一种软件架构风格，它是以专注于单一责任与功能的小型功能区块 (Small Building Blocks) 为基础，利用模块化的方式组合出复杂的大型应用程序，各功能区块使用与语言无关的API集相互通信。 </p>
+<p>简单来说，微服务就是将一个大型的应用拆分成很多个小的应用，这些应用之间一般通过基于HTTP的RESTful API进行通信协作，并且能够各自进行独立部署以及伸缩。由于微服务独立部署，可伸缩的特性，它能够迅速地大规模部署到云服务器上。</p>
+<p>而使用 Spring Cloud 能够快速实现微服务架构。</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151608595.jpg" srcset="/img/loading.gif" lazyload alt="7"></p>
+<p>官方介绍：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>spring.io<span class="hljs-regexp">/projects/</span>spring-cloud<br></code></pre></td></tr></table></figure>
+
+<p>Spring Cloud 提供了许多模块，以下是一些常用的模块及其主要作用：</p>
+<p><strong>Spring Cloud Config（配置中心）：</strong></p>
+<ul>
+<li>作用：用于集中管理配置信息，可以将配置信息存储在版本控制系统中，并在需要时动态刷新。</li>
+</ul>
+<p><strong>Spring Cloud Netflix（服务治理）：</strong></p>
+<ul>
+<li>作用：整合了Netflix开发的一些组件，包括Eureka（服务注册与发现）、Ribbon（客户端负载均衡）、Hystrix（熔断器）、Feign（声明式REST客户端）等，用于构建具有高可用性和弹性的微服务架构。</li>
+</ul>
+<p><strong>Spring Cloud Bus（消息总线）：</strong></p>
+<ul>
+<li>作用：通过消息总线，实现微服务架构中配置的动态刷新，使得配置的修改能够快速传播到各个微服务实例。</li>
+</ul>
+<p><strong>Spring Cloud Sleuth（分布式追踪）：</strong></p>
+<ul>
+<li>作用：用于跟踪分布式系统中的请求流程，生成跨服务的唯一标识，方便在分布式系统中进行日志跟踪和性能监控。</li>
+</ul>
+<p><strong>Spring Cloud Gateway（网关）：</strong></p>
+<ul>
+<li>作用：提供了一种简单而有效的方式来进行路由、过滤以及转发请求，用于构建微服务架构中的API网关。</li>
+</ul>
+<p><strong>Spring Cloud Stream（消息驱动）：</strong></p>
+<ul>
+<li>作用：简化了消息驱动的微服务开发，提供了一套统一的编程模型，支持多种消息中间件。</li>
+</ul>
+<p><strong>Spring Cloud Security（安全）：</strong></p>
+<ul>
+<li>作用：提供了一些安全工具和特性，用于保护分布式系统中的微服务。</li>
+</ul>
+<p><strong>Spring Cloud Data Flow（数据流）：</strong></p>
+<ul>
+<li>作用：用于构建和部署实时数据处理和分析的微服务，支持复杂的数据流操作。</li>
+</ul>
+<p><strong>Spring Cloud OpenFeign（声明式REST客户端）：</strong></p>
+<ul>
+<li>作用：简化了微服务之间的REST调用，通过声明式的方式定义和调用服务接口。</li>
+</ul>
+<p><strong>Spring Cloud Task（任务调度）：</strong></p>
+<ul>
+<li>作用：用于简化任务调度和执行，支持在分布式环境中进行批处理任务的调度和执行。</li>
+</ul>
+<p>若依微服务版本：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>tee.com<span class="hljs-regexp">/y_project/</span>RuoYi-Cloud<br></code></pre></td></tr></table></figure>
+
+<h1 id="JAVA分层思想与MVC模式"><a href="#JAVA分层思想与MVC模式" class="headerlink" title="JAVA分层思想与MVC模式"></a>JAVA分层思想与MVC模式</h1><h2 id="1、分层讲解"><a href="#1、分层讲解" class="headerlink" title="1、分层讲解"></a>1、分层讲解</h2><p>Java 分层思想是一种软件架构设计理念，旨在将一个复杂的系统划分为多个相对独立且互相关联的层次，每个层次负责不同的功能，以实现高内聚、低耦合的设计。这种思想有助于提高代码的可维护性、可扩展性，并使团队更容易协同工作。以下是Java分层思想的主要层次：</p>
+<p><strong>表现层（Presentation Layer）：</strong> 主要负责与用户交互，处理用户界面和用户输入输出。在 Java 中，通常由 Servlet、JSP、或者更现代的框架如 Spring MVC 负责、或者 Springboot 下的 Controller 层。</p>
+<p><strong>业务层（Business Layer）：</strong> 业务层包含应用程序的业务逻辑，处理业务规则和数据处理。这一层通常由 JavaBean、Service 等组成，负责执行具体的业务操作。</p>
+<p><strong>服务层（Service Layer）：</strong> 服务层是业务层的一部分，提供业务逻辑的具体实现。在 Spring 框架中，使用 @Service 注解来表示服务层。</p>
+<p><strong>持久层（Persistence Layer）：</strong> 持久层负责数据的持久化，通常与数据库交互。在 Java 中，常见的持久层技术包括 JDBC、Hibernate、MyBatis 等。</p>
+<p><strong>数据访问层（Data Access Layer）：</strong> 这一层是持久层的一部分，负责封装数据访问细节，提供统一的接口给业务层。通常由 DAO（Data Access Object）组成。</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611117.png" srcset="/img/loading.gif" lazyload alt="Java分层"></p>
+<p>通过明确划分这些层次，开发人员可以更容易地理解、维护和扩展代码。这种分层思想还有助于实现模块化开发，每个层次都可以独立测试和替换，从而提高系统的可测试性和灵活性。在实际应用中，可以根据项目的规模和需求进行适度的调整和扩展。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">https</span>://www.cnblogs.com/java-<span class="hljs-number">123</span>/p/<span class="hljs-number">9174547</span>.html<br></code></pre></td></tr></table></figure>
+
+<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><p>老规矩，看pom.xml</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611136.png" srcset="/img/loading.gif" lazyload alt="image-20240418124124507"></p>
+<p>看看有没有报红的地方，那里可能依赖还没有缓存好（刚打开要先等等）</p>
+<p>再看看rbac.sql</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611122.png" srcset="/img/loading.gif" lazyload alt="image-20240418124136004"></p>
+<p>把它导入到我们的数据库中</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611131.png" srcset="/img/loading.gif" lazyload alt="image-20240418124632503"></p>
+<p>首先我们可以看到数据库名称是rbac</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611148.png" srcset="/img/loading.gif" lazyload alt="image-20240418124824388"></p>
+<p>我们也创建一个</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611152.png" srcset="/img/loading.gif" lazyload alt="image-20240418124949474"></p>
+<p>然后再导入（<strong>注意这里不用加分号</strong>）</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611344.png" srcset="/img/loading.gif" lazyload alt="image-20240418125147945"></p>
+<p>还是刚才application.yml那，记得改账号密码</p>
+<p>然后开始看分层</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611365.png" srcset="/img/loading.gif" lazyload alt="image-20240418125925091"></p>
+<p><code>annotation</code>：放置项目自定义注解</p>
+<p><code>controller/</code>: 存放控制器，接收从前端传来的参数，对访问控制进行转发、各类基本参数校验或者不复用的业务简单处理等。</p>
+<p><code>dao/</code>: 数据访问层，与数据库进行交互，负责数据库操作，在Mybaits框架中存放自定义的Mapper接口</p>
+<p><code>entity/</code>: 存放实体类</p>
+<p><code>interceptor/</code>: 拦截器</p>
+<p><code>service/</code>: 存放服务类，负责业务模块逻辑处理。<code>Service</code>层中有两种类，一是<code>Service</code>，用来声明接口；二是<code>ServiceImpl</code>，作为实现类实现接口中的方法。</p>
+<p><code>utils/</code>: 存放工具类</p>
+<p><code>dto/</code>: 存放数据传输对象（Data Transfer Object），如请求参数和返回结果</p>
+<p><code>vo/</code>: 视图对象（View Object）用于封装客户端请求的数据，防止部分数据泄漏，保证数据安全</p>
+<p><code>constant/</code>: 存放常量</p>
+<p><code>filter/</code>: 存放过滤器 </p>
+<h3 id="resources-目录"><a href="#resources-目录" class="headerlink" title="resources 目录"></a>resources 目录</h3><p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202406151611387.png" srcset="/img/loading.gif" lazyload alt="image-20240418141440412"></p>
+<p><code>mapper/</code>: 存放Mybaits的mapper.xml文件</p>
+<p><code>static/</code>: 静态资源文件目录（Javascript、CSS、图片等），在这个目录中的所有文件可以被直接访问</p>
+<p><code>templates/</code>: 存放模版文件</p>
+<p><code>application.properties</code>或<code>application.yml</code>: Spring Boot默认配置文件</p>
+<h1 id="Java-MVC-模式"><a href="#Java-MVC-模式" class="headerlink" title="Java MVC 模式"></a>Java MVC 模式</h1><h2 id="1、模式讲解"><a href="#1、模式讲解" class="headerlink" title="1、模式讲解"></a>1、模式讲解</h2><p>MVC 即模型（Model） 、视图（View）、控制器（Controller）。</p>
+<p>MVC（Model-View-Controller）是一种软件架构模式，用于设计和组织代码。它将一个应用程序分为三个主要组件：模型（Model）、视图（View）和控制器（Controller）。每个组件有不同的责任，以实现代码的分离和模块化，以便更容易维护和扩展应用程序。</p>
+<p>通俗来说，各司其职高效完成任务。</p>
+<ul>
+<li>模型（Model）</li>
+</ul>
+<p>模型是用于处理数据逻辑的部分。</p>
+<p>所谓数据逻辑，也就是数据的映射以及对数据的增删改查，Bean、DAO（data access object，数据访问对象）等都属于模型部分。</p>
+<ul>
+<li>视图（View）</li>
+</ul>
+<p>视图负责数据与其它信息的显示，也就是给用户看到的页面。</p>
+<p>html、JSP 等页面都可以作为视图。</p>
+<ul>
+<li>控制器（controller）</li>
+</ul>
+<p>控制器是模型与视图之间的桥梁，控制着数据与用户的交互。</p>
+<p>控制器通常负责从视图读取数据，处理用户输入，并向模型发送数据，也可以从模型中读取数据，再发送给视图，由视图显示。</p>
+</servlet>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JAVA/" class="category-chain-item">JAVA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaWEB入门</div>
+      <div>https://www.susec.xyz/2024/06/16/JavaWeb/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>suuuu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94web-1/" title="知攻善防-应急响应-web-1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">知攻善防-应急响应-web-1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/15/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E5%9C%A8try%20hack%20me%E6%89%93%E9%9D%B6%EF%BC%8C%E5%8A%B1%E5%BF%97%E6%88%90%E4%B8%BA%E8%B5%9B%E5%8D%9A%E9%AB%98%E6%89%8B-DAY2-Blue/" title="重生之我在try hack me打靶，励志成为赛博高手-DAY2-Blue">
+                        <span class="hidden-mobile">重生之我在try hack me打靶，励志成为赛博高手-DAY2-Blue</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
