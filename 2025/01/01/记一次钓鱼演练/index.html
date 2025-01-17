@@ -16,12 +16,12 @@
   <meta name="author" content="suuuu">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="记一次钓鱼演练注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担 钓鱼演练，首先要准备的肯定是一个免杀的木马 火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360&#x3D;&#x3D;因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害&#x3D;&#x3D;至于源码就不">
+    <meta name="description" content="记一次钓鱼演练注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担 钓鱼演练，首先要准备的肯定是一个免杀的木马 火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360 因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害至于源码就不发了，相信各位大佬肯定都是随便免杀的，这里就不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次钓鱼演练">
 <meta property="og:url" content="https://www.susec.xyz/2025/01/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%92%93%E9%B1%BC%E6%BC%94%E7%BB%83/index.html">
 <meta property="og:site_name" content="suuuu&#39;s blog">
-<meta property="og:description" content="记一次钓鱼演练注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担 钓鱼演练，首先要准备的肯定是一个免杀的木马 火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360&#x3D;&#x3D;因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害&#x3D;&#x3D;至于源码就不">
+<meta property="og:description" content="记一次钓鱼演练注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担 钓鱼演练，首先要准备的肯定是一个免杀的木马 火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360 因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害至于源码就不发了，相信各位大佬肯定都是随便免杀的，这里就不">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101643811.png">
 <meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101808137.png">
@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102742675.png">
 <meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225102922843.png">
 <meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-17T08:53:03.474Z">
+<meta property="article:modified_time" content="2025-01-17T08:59:36.652Z">
 <meta property="article:author" content="suuuu">
 <meta property="article:tag" content="免杀">
 <meta property="article:tag" content="钓鱼">
@@ -302,7 +302,8 @@
                 
                 <h1 id="记一次钓鱼演练"><a href="#记一次钓鱼演练" class="headerlink" title="记一次钓鱼演练"></a>记一次钓鱼演练</h1><p>注：本文只用于学习与交流，请不要在未授权的情况下做任何对计算机有危害的操作，一切后果作者不承担</p>
 <p>钓鱼演练，首先要准备的肯定是一个免杀的木马<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101643811.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101808137.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360&#x3D;&#x3D;因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害&#x3D;&#x3D;<br>至于源码就不发了，相信各位大佬肯定都是随便免杀的，这里就不丢脸了</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225101808137.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>火绒跟windows defender都是没问题的，过不了360，但是无伤大雅，因为我事先看了一下， 没人用360</p>
+<p>因为只是测试，这个木马的shellcode只是弹个计算器，不会有别的危害<br>至于源码就不发了，相信各位大佬肯定都是随便免杀的，这里就不丢脸了</p>
 <p>钓鱼直接发个exe肯定没人信，接下来就是钓鱼的伪装，首先我们做Lnk伪造<br>第一步，新建文件夹<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103407047.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103458516.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>在文件夹里新建一个快捷方式<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103627662.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>先指向calc.exe<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103712154.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>右键属性选择更改图标<br>%SystemRoot%\System32\SHELL32.dll<br>填入这个<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103804220.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>更改成空白图标，再做一下重命名<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103829804.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拖入010<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103911849.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>要选择第二个打开LN<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225103941652.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这部分就是我们要改的内容，网上很多什么unicode修改，我不知道为什么一直出错，我后面选择了在010自带的内容里修改<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104035467.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>就是这里，改成.\1.pdf<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104101714.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>再保存<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104127939.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>再回去看，可以看到已经变成了一个带箭头的pdf快捷方式，然后就是找一些真的资料来骗<br>刚好正值考试季，找朋友要了下往年试卷<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225104944339.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>布局一下文件夹格式</p>
 <p>这是我想象的布局，第二个打码的是他们不用考的科目，他们应该不会打开，所以我计划在里面放🐎，<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225105244734.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后将三套离散卷子都改成触发🐎的快捷方式，这样既有一致性，无论点哪个都会触发，而且就放在根目录，应该会第一时间点开这个，至于概率论就放真的卷子好了<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20241225105611997.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后在不用考的目录里多套几层壳，.png文件就是木马做了重命名，而且.png可以更好地规避杀毒软件的扫描，我们后续会通过bat来触发，再在这个文件夹里放入真的离散卷子<br>然后修改一下bat文件里的内容</p>
@@ -404,9 +405,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/01/CVE-2021-44228/" title="CVE-2021-44228">
+                      <a href="/2025/01/01/Bob/" title="BOB">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CVE-2021-44228</span>
+                        <span class="hidden-mobile">BOB</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -414,8 +415,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/11/Raven2/" title="vulnhub靶场-Raven2">
-                        <span class="hidden-mobile">vulnhub靶场-Raven2</span>
+                      <a href="/2024/11/11/DC-1/" title="vulnhub靶场-DC-1">
+                        <span class="hidden-mobile">vulnhub靶场-DC-1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
