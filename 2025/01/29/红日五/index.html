@@ -16,51 +16,37 @@
   <meta name="author" content="suuuu">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="信息收集主机识别：端口扫描：38384这种放在高端口一般就意味着藏东西了，nmap扫下详细信息22，80都很熟悉了就不看了嘶，说实话我还是看不懂，那只能先从80端口下手网页端长这样，第一反应肯定是去登录注册口，但是点了没反应，对目录进行扫描试试可以看到一个.DS_Store的泄漏，发现这可能是基于wordpress框架搭建的，并且存在登录的页面，先看看.DS_Storedumpall -u htt">
+    <meta name="description" content="TP 框架直接用工具getshell传马，信息收集内网网段192.168.138.1&#x2F;24域名sun.com得到域控ip 138然后再做下主机探测，看看C段下还有多少主机只receive两台，我还以为是不准，换了fscan发现真就两台，而且开启了smb,139，先抓取下凭证得到域管NTLM Hash跟明文密码，直接试试横向先弄个代理，这里suo5就行了，简单方便横成功了换一种再横一次pt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vulnhub靶场-Raven2">
-<meta property="og:url" content="https://www.susec.xyz/2024/11/11/Raven2/index.html">
+<meta property="og:title" content="红日五">
+<meta property="og:url" content="https://www.susec.xyz/2025/01/29/%E7%BA%A2%E6%97%A5%E4%BA%94/index.html">
 <meta property="og:site_name" content="suuuu&#39;s blog">
-<meta property="og:description" content="信息收集主机识别：端口扫描：38384这种放在高端口一般就意味着藏东西了，nmap扫下详细信息22，80都很熟悉了就不看了嘶，说实话我还是看不懂，那只能先从80端口下手网页端长这样，第一反应肯定是去登录注册口，但是点了没反应，对目录进行扫描试试可以看到一个.DS_Store的泄漏，发现这可能是基于wordpress框架搭建的，并且存在登录的页面，先看看.DS_Storedumpall -u htt">
+<meta property="og:description" content="TP 框架直接用工具getshell传马，信息收集内网网段192.168.138.1&#x2F;24域名sun.com得到域控ip 138然后再做下主机探测，看看C段下还有多少主机只receive两台，我还以为是不准，换了fscan发现真就两台，而且开启了smb,139，先抓取下凭证得到域管NTLM Hash跟明文密码，直接试试横向先弄个代理，这里suo5就行了，简单方便横成功了换一种再横一次pt">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250008074.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250009019.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250012717.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301255893.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301258035.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301308275.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301311910.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301312617.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301313090.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301314095.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301320147.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301321482.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301343037.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301351933.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301352109.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301354658.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301355635.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301407324.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301408749.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301409184.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301418679.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301441008.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301445335.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301452390.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301454287.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301455902.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301457442.png">
-<meta property="article:published_time" content="2024-11-11T03:11:11.000Z">
-<meta property="article:modified_time" content="2024-11-20T10:31:12.560Z">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121212458757.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121212810871.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121213535428.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121213557866.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121213958899.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121214927545.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121222203702.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121222242633.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224247878.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224347700.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224606690.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224641064.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224734450.png">
+<meta property="article:published_time" content="2025-01-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-22T12:14:52.112Z">
 <meta property="article:author" content="suuuu">
-<meta property="article:tag" content="靶场">
 <meta property="article:tag" content="打靶">
+<meta property="article:tag" content="内网">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250008074.png">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121212458757.png">
   
   
   
-  <title>vulnhub靶场-Raven2 - suuuu&#39;s blog</title>
+  <title>红日五 - suuuu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="vulnhub靶场-Raven2"></span>
+            <span id="subtitle" data-typed-text="红日五"></span>
           
         </div>
 
@@ -237,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-11 11:11" pubdate>
-          2024年11月11日 上午
+        <time datetime="2025-01-29 00:00" pubdate>
+          2025年1月29日 凌晨
         </time>
       </span>
     
@@ -249,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          180 字
         
       </span>
     
@@ -260,7 +246,7 @@
         
         
         
-          9 分钟
+          2 分钟
         
       </span>
     
@@ -297,20 +283,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">vulnhub靶场-Raven2</h1>
+            <h1 id="seo-header">红日五</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>主机识别：<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250008074.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>端口扫描：<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250009019.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>38384这种放在高端口一般就意味着藏东西了，nmap扫下详细信息<br>22，80都很熟悉了就不看了<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409250012717.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>嘶，说实话我还是看不懂，那只能先从80端口下手<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301255893.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>网页端长这样，第一反应肯定是去登录注册口，但是点了没反应，对目录进行扫描试试<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301258035.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以看到一个.DS_Store的泄漏，发现这可能是基于wordpress框架搭建的，并且存在登录的页面，先看看.DS_Store<br><code>dumpall -u http://192.168.56.146/.DS_Store</code><br>使用dumpall提取出文件<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301308275.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这个security - Doc一看就很诱人<br>好吧啥也没有，继续看目录扫描的结果，一个个点开看看<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301311910.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现vendor这里直接目录就泄漏出来了，那我刚才还把DS_Store弄下来扒了一堆前端代码干嘛<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301312617.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>随便点点找到flag1<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301313090.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>简单翻阅一下发现这个系统应该是跟phpmailer有关，然后这里疑似账号密码泄漏<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301314095.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>有个version，我们一会儿可以根据这个找nday（其实按照靶场惯例的话这里直接可以开打了）</p>
-<h1 id="打点"><a href="#打点" class="headerlink" title="打点"></a>打点</h1><p>但我们还是访问下登录的路径，打打弱口令，毕竟刚才那个flag出现的这么突然，如果这里也有呢？<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301320147.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301321482.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>他直接跳转到raven.local了，windows改hosts有点麻烦，这里就先跳过了，废话不多说，直接打nday<br>用上我们的搜索大法<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301343037.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这种脚本还是python的比较好用，那我们就用40974.py<br>先看看脚本内容<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301351933.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>圈起来的三个地方改改就行<br>如下：<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301352109.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>我这里有点错，访问about.html不知道为什么是不行的，我后面改成contact.php就成功了（后面看的时候发现漏洞点是在contact.php的，所以必须是这个）<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301354658.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>访问一下shell所在链接即可监听<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301355635.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>肯定先是完善下tty，毕竟这样子看着也不舒服，还不稳定<br><code>python -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;</code><br>然后ctrl+z，再输入stty raw -echo<br>在输入fg回到靶机，这个时候其实跟ssh连接就没什么区别了<br><code>find / -name flag* 2&gt;/dev/null</code><br>再输入这个去找flag<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301407324.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以看到flag2跟flag3，我们直接cat一下<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301408749.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>flag3的话我们访问一下即可<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301409184.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>由于我们刚才一直有看到的wordpress，而wordpress肯定是会config文件的，我们再看看里面的内容<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301418679.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>直接就看到了mysql setting<br>白看了，发现提权收集信息还是脚本爽，脚本直接检查全部.conf文件，而且还发现mysql是root权限，那我们就可以从这里出发，先连上<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301441008.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>mysql提权一般来讲有三种<br>udf，mof，启动项<br>其中udf提权是通过手动写入函数的方式进行提权<br><code>show global variables like &#39;%secure%&#39;;</code><br>使用这个语句进行检测<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301445335.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这里我们主要看secure_file_priv<br>主要分三种情况</p>
-<ol>
-<li>null：无法提权</li>
-<li>具体目录，如&#x2F;tmp：无法提权</li>
-<li>空，即如图，可以提权<br>（udf提权还要看mysql版本，这里我漏了看，这个靶场是5.5.6）<br>然后就是找网上现成提权脚本<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301452390.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>我们就用这个<br>-g 生成调试信息<br>-c 编译（二进制）<br>-shared：创建一个动态链接库，输入文件可以是源文件、汇编文件或者目标文件。<br>-o：执行命令后的文件名<br>-lc：-l 库 c库名<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301454287.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301455902.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202409301457442.png" srcset="/img/loading.gif" lazyload alt="image.png"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs mysql">use mysql; <br>#进入数据库<br>create table foo(line blob); <br>#创建数据表foo<br>insert into foo values(load_file(&#x27;/tmp/tiquan.so&#x27;)); <br>#插入数据<br>select * from foo into dumpfile &#x27;/usr/lib/mysql/plugin/tiquan.so&#x27;; <br>#( Foo表成功插入二进制数据，<br>然后利用dumpfile函数把文件导出<br>outfile 多行导出，dumpfile一行导出<br>outfile会有特殊的转换，而dumpfile是原数据导出<br>新建存储函数)<br>create function do_system returns integer soname &#x27;icepeak.so&#x27;; <br>#(创建自定义函数do_system 类型是integer，别名<br>soname文件名字然后查询函数是否创建成功)<br>select * from mysql.func;<br>select do_system(&#x27;chmod u+s /usr/bin/find&#x27;); <br>#(调用do_system函数来给find命令所有者的suid权限，使其可以执行<br> root命令)<br>quit<br></code></pre></td></tr></table></figure>
-最后再执行一次找flag就结束啦</li>
-</ol>
+                <p>TP 框架直接用工具getshell<br>传马，信息收集<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121212458757.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>内网网段192.168.138.1&#x2F;24<br>域名sun.com<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121212810871.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>得到域控ip 138<br>然后再做下主机探测，看看C段下还有多少主机<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121213535428.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>只receive两台，我还以为是不准，换了fscan<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121213557866.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现真就两台，而且开启了smb,139，<br>先抓取下凭证<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121213958899.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>得到域管NTLM Hash跟明文密码，直接试试横向<br>先弄个代理，这里suo5就行了，简单方便<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121214927545.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>横成功了<br>换一种再横一次<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121222203702.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>pth横向<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121222242633.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后用刚才方法触发一下1.exe即可<br>其实就是为了在CS练下权限维持<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224247878.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拿到域SID及krbtgt的NTLM hash<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224347700.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224606690.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224641064.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>从而实现对域控的访问<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250121224734450.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以将文件传到域控上</p>
 
                 
               </div>
@@ -344,9 +322,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%9D%B6%E5%9C%BA/" class="print-no-link">#靶场</a>
-      
         <a href="/tags/%E6%89%93%E9%9D%B6/" class="print-no-link">#打靶</a>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91/" class="print-no-link">#内网</a>
       
     </div>
   
@@ -358,8 +336,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vulnhub靶场-Raven2</div>
-      <div>https://www.susec.xyz/2024/11/11/Raven2/</div>
+      <div>红日五</div>
+      <div>https://www.susec.xyz/2025/01/29/红日五/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +349,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月11日</div>
+          <div>2025年1月29日</div>
         </div>
       
       
@@ -403,9 +381,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/11/DC-1/" title="vulnhub靶场-DC-1">
+                      <a href="/2025/01/29/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-initial/" title="春秋云镜-initial">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vulnhub靶场-DC-1</span>
+                        <span class="hidden-mobile">春秋云镜-initial</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -413,8 +391,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/11/Shiro/" title="SHIRO">
-                        <span class="hidden-mobile">SHIRO</span>
+                      <a href="/2025/01/01/Bob/" title="BOB">
+                        <span class="hidden-mobile">BOB</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
