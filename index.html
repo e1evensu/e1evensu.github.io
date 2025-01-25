@@ -351,13 +351,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/29/%E7%BA%A2%E6%97%A5%E4%BA%94/" target="_self">
+        <a href="/2025/01/29/%E7%BA%A2%E6%97%A55/" target="_self">
           红日五
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E7%BA%A2%E6%97%A5%E4%BA%94/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E7%BA%A2%E6%97%A55/" target="_self">
         <div>
           TP 框架直接用工具getshell传马，信息收集内网网段192.168.138.1&#x2F;24域名sun.com得到域控ip 138然后再做下主机探测，看看C段下还有多少主机只receive两台，我还以为是不准，换了fscan发现真就两台，而且开启了smb,139，先抓取下凭证得到域管NTLM Hash跟明文密码，直接试试横向先弄个代理，这里suo5就行了，简单方便横成功了换一种再横一次pt
         </div>
@@ -401,6 +401,73 @@
               <a href="/tags/%E6%89%93%E9%9D%B6/">#打靶</a>
             
               <a href="/tags/%E5%86%85%E7%BD%91/">#内网</a>
+            
+              <a href="/tags/%E7%BA%A2%E6%97%A5-vulnstack/">#红日/vulnstack</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/29/%E7%BA%A2%E6%97%A57/" target="_self">
+          红日七
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E7%BA%A2%E6%97%A57/" target="_self">
+        <div>
+          信息收集端口扫描，80跟22都没什么思路，于是爆破6379发现存在匿名访问redis未授权可以写webshell，也可以直接写ssh密钥进行连接，又或者是计划任务 REDIS未授权写ssh_key我们这里直接写ssh先生成一个密钥然后写入key.txt(echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot;) &gt;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-29 00:00" pubdate>
+              2025-01-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%89%93%E9%9D%B6/" class="category-chain-item">打靶</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%93%E9%9D%B6/">#打靶</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91/">#内网</a>
+            
+              <a href="/tags/%E7%BA%A2%E6%97%A5-vulnstack/">#红日/vulnstack</a>
             
           </div>
         
@@ -729,15 +796,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/11/11/Shiro/" target="_self">
-          SHIRO
+        <a href="/2024/11/11/SQL%E6%B3%A8%E5%85%A5/" target="_self">
+          SQL注入
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/11/Shiro/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/11/SQL%E6%B3%A8%E5%85%A5/" target="_self">
         <div>
-          历史漏洞   漏洞编号 shiro版本 配置    CVE-2010-3863 shiro &lt; 1.1.0JSecurity 0.9.x &#x2F;** &#x3D; anon   CVE-2014–0074shiro-460 shiro 1.x &lt; 1.2.3    CVE-2016-4437shiro-550 shiro 1.x &lt; 1.2.5    CVE-2016-68
+          数据库操作MYSQLmysql对大小写不敏感每句话都要以;结尾 基础语句总结：   语句 含义    mysql -u&lt;用户名&gt; -p&lt;密码&gt; 连接数据库   show databases; 查询数据库   create database &lt;数据库名&gt; 创建名为&lt;数据库名&gt;的数据库   use &lt;数据库名&gt;； 使用名为&lt;数据库名&g
         </div>
       </a>
 
@@ -761,7 +828,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BB%84%E4%BB%B6%E6%BC%8F%E6%B4%9E/" class="category-chain-item">组件漏洞</a>
+  <a href="/categories/TOP10/" class="category-chain-item">TOP10</a>
   
   
 
@@ -778,70 +845,7 @@
             
               <a href="/tags/WEB/">#WEB</a>
             
-              <a href="/tags/%E7%BB%84%E4%BB%B6/">#组件</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/11/getshell%E6%89%8B%E6%B3%95/" target="_self">
-          getshell手法小记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/11/getshell%E6%89%8B%E6%B3%95/" target="_self">
-        <div>
-          sql注入php这里挑选最简单的数字型sql注入进行学习这里的漏洞点就发生在query中$query=&quot;select username,email from member where id=$id&quot;;这里存在sql注入漏洞的原因是：这里的id我们是可控的，没有进行任何过滤，会直接通过execute执行sql语句我们单独把这个sql语句拿出来看看select username,e
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-11 11:11" pubdate>
-              2024-11-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/getshell/" class="category-chain-item">getshell</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/getshell/">#getshell</a>
-            
-              <a href="/tags/top10/">#top10</a>
+              <a href="/tags/TOP10/">#TOP10</a>
             
           </div>
         
