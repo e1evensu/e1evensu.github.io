@@ -485,7 +485,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94win-2/" target="_self">
         <div>
-          应急响应WIN-2用户:administrator 密码:&#x5a;&#x67;&#115;&#102;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#109;   先对网站目录进行一个扫描，发现了一个后门文件  这是一个哥斯拉的后门文件 我们知道了后门密码是hack6618 但是我们没有找到跟ip有关的信息，于是去对日志进行分析  这里可以看到192.168.126
+          应急响应WIN-2用户:administrator 密码:&#90;&#103;&#115;&#x66;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;   先对网站目录进行一个扫描，发现了一个后门文件  这是一个哥斯拉的后门文件 我们知道了后门密码是hack6618 但是我们没有找到跟ip有关的信息，于是去对日志进行分析  这里可以看到192.168.126.13
         </div>
       </a>
 
@@ -796,15 +796,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/01/CVE-2021-44228/" target="_self">
-          CVE-2021-44228
+        <a href="/2025/01/01/Bob/" target="_self">
+          BOB
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/01/CVE-2021-44228/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/01/Bob/" target="_self">
         <div>
-          漏洞名0x01 简介Apache Log4j是一个基于Java的日志记录组件，通过重写Log4j引入了丰富的功能特性，该日志组件被广泛应用于业务系统开发，用以记录程序输入输出日志信息。Apache Log4j2存在远程代码执行漏洞，攻击者可利用该漏洞向目标服务器发送精心构造的恶意数据，触发Log4j2组件解析缺陷，实现目标服务器的任意代码执行，获得目标服务器权限。 0x02 漏洞概述漏洞编号：CV
+          靶机ip：192.168.149.134 信息收集端口扫描首先使用rustscan对靶标进行快速的全端口扫描可以看到开了21，80，25468端口，再用nmap做一个详细的信息收集可以看到80端口的http服务有一些敏感目录的泄漏 外围打点我们访问dev-shell.php发现可以执行系统命令（图上已执行whoami）我们试着去反弹shell先在攻击机上用nc进行监听 &#x2F;bin&#x2F
         </div>
       </a>
 
@@ -828,7 +828,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="category-chain-item">漏洞复现</a>
+  <a href="/categories/%E6%89%93%E9%9D%B6/" class="category-chain-item">打靶</a>
   
   
 
@@ -843,9 +843,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E/">#漏洞</a>
+              <a href="/tags/WEB/">#WEB</a>
             
-              <a href="/tags/CVE/">#CVE</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/">#靶场</a>
             
           </div>
         
