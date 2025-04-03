@@ -296,7 +296,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94win-2/" target="_self">
         <div>
-          应急响应WIN-2用户:administrator 密码:&#x5a;&#x67;&#x73;&#102;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;   先对网站目录进行一个扫描，发现了一个后门文件  这是一个哥斯拉的后门文件 我们知道了后门密码是hack6618 但是我们没有找到跟ip有关的信息，于是去对日志进行分析  这里可以看到192.168.126
+          应急响应WIN-2用户:administrator 密码:&#x5a;&#103;&#115;&#102;&#64;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;   先对网站目录进行一个扫描，发现了一个后门文件  这是一个哥斯拉的后门文件 我们知道了后门密码是hack6618 但是我们没有找到跟ip有关的信息，于是去对日志进行分析  这里可以看到192.168.126.
         </div>
       </a>
 
@@ -477,6 +477,71 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/01/29/%E7%BA%A2%E6%97%A57/" target="_self">
+          红日七
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E7%BA%A2%E6%97%A57/" target="_self">
+        <div>
+          信息收集端口扫描，80跟22都没什么思路，于是爆破6379发现存在匿名访问redis未授权可以写webshell，也可以直接写ssh密钥进行连接，又或者是计划任务 REDIS未授权写ssh_key我们这里直接写ssh先生成一个密钥然后写入key.txt(echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot;) &gt;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-29 00:00" pubdate>
+              2025-01-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%89%93%E9%9D%B6/" class="category-chain-item">打靶</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%93%E9%9D%B6/">#打靶</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91/">#内网</a>
+            
+              <a href="/tags/%E7%BA%A2%E6%97%A5-vulnstack/">#红日/vulnstack</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2025/01/29/%E7%BA%A2%E6%97%A55/" target="_self">
           红日五
         </a>
@@ -542,15 +607,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/29/%E7%BA%A2%E6%97%A57/" target="_self">
-          红日七
+        <a href="/2025/01/01/Bob/" target="_self">
+          BOB
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/29/%E7%BA%A2%E6%97%A57/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/01/Bob/" target="_self">
         <div>
-          信息收集端口扫描，80跟22都没什么思路，于是爆破6379发现存在匿名访问redis未授权可以写webshell，也可以直接写ssh密钥进行连接，又或者是计划任务 REDIS未授权写ssh_key我们这里直接写ssh先生成一个密钥然后写入key.txt(echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot;) &gt;
+          靶机ip：192.168.149.134 信息收集端口扫描首先使用rustscan对靶标进行快速的全端口扫描可以看到开了21，80，25468端口，再用nmap做一个详细的信息收集可以看到80端口的http服务有一些敏感目录的泄漏 外围打点我们访问dev-shell.php发现可以执行系统命令（图上已执行whoami）我们试着去反弹shell先在攻击机上用nc进行监听 &#x2F;bin&#x2F
         </div>
       </a>
 
@@ -558,8 +623,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-29 00:00" pubdate>
-              2025-01-29
+            <time datetime="2025-01-01 00:00" pubdate>
+              2025-01-01
             </time>
           </div>
         
@@ -589,11 +654,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%89%93%E9%9D%B6/">#打靶</a>
+              <a href="/tags/WEB/">#WEB</a>
             
-              <a href="/tags/%E5%86%85%E7%BD%91/">#内网</a>
-            
-              <a href="/tags/%E7%BA%A2%E6%97%A5-vulnstack/">#红日/vulnstack</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/">#靶场</a>
             
           </div>
         
@@ -670,69 +733,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/01/01/Bob/" target="_self">
-          BOB
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/01/Bob/" target="_self">
-        <div>
-          靶机ip：192.168.149.134 信息收集端口扫描首先使用rustscan对靶标进行快速的全端口扫描可以看到开了21，80，25468端口，再用nmap做一个详细的信息收集可以看到80端口的http服务有一些敏感目录的泄漏 外围打点我们访问dev-shell.php发现可以执行系统命令（图上已执行whoami）我们试着去反弹shell先在攻击机上用nc进行监听 &#x2F;bin&#x2F
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-01 00:00" pubdate>
-              2025-01-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%89%93%E9%9D%B6/" class="category-chain-item">打靶</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%B6%E5%9C%BA/">#靶场</a>
-            
-              <a href="/tags/WEB/">#WEB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2025/01/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%92%93%E9%B1%BC%E6%BC%94%E7%BB%83/" target="_self">
           记一次钓鱼演练
         </a>
@@ -796,15 +796,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/11/11/DC-1/" target="_self">
-          vulnhub靶场-DC-1
+        <a href="/2024/11/11/Raven2/" target="_self">
+          vulnhub靶场-Raven2
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/11/DC-1/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/11/Raven2/" target="_self">
         <div>
-          首先快速做下全端口扫描，开了四个端口再做下指纹识别，80端口有一个drupal网站，再进行目录扫描其中有一个&#x2F;UPGRADE.txt里面指出这是Drupal 7.x，那果断先找nday这里选择几个RCE试试msf给出的更明显，那我们直接使用exploit&#x2F;unix&#x2F;webapp&#x2F;drupal_drupalgeddon2成功getshell接下来就是提权我们看
+          信息收集主机识别：端口扫描：38384这种放在高端口一般就意味着藏东西了，nmap扫下详细信息22，80都很熟悉了就不看了嘶，说实话我还是看不懂，那只能先从80端口下手网页端长这样，第一反应肯定是去登录注册口，但是点了没反应，对目录进行扫描试试可以看到一个.DS_Store的泄漏，发现这可能是基于wordpress框架搭建的，并且存在登录的页面，先看看.DS_Storedumpall -u htt
         </div>
       </a>
 
